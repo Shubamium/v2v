@@ -1,0 +1,212 @@
+#header {
+  position: relative;
+  z-index: 100;
+  .side-l,
+  .side-r {
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 15%;
+    height: 30px;
+    background: #282429;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  }
+  .side-r {
+    left: unset;
+    right: 0%;
+    // clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+  }
+
+  .rgb-line {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background: linear-gradient(
+      to right,
+      var(--purp),
+      var(--yell),
+      var(--blu),
+      var(--gre)
+    );
+
+    height: 2px;
+    width: 100%;
+    z-index: 10;
+  }
+  background: #322d36;
+
+  .logo-part {
+    position: absolute;
+    width: 210px;
+    object-fit: contain;
+    top: 0%;
+    left: 0%;
+    z-index: 15;
+    height: 120px;
+    filter: drop-shadow(0px 0px 10px black);
+    .wrapper {
+      // display: none;
+      width: 100%;
+      height: 100%;
+      background: #241e26;
+      padding: 1em 2em;
+      border-radius: 0 0 2em 0;
+      box-shadow: 0px 2px 5px 3px rgba(0, 0, 0, 0.137);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 100%;
+      background: linear-gradient(
+        to right,
+        var(--purp),
+        var(--yell),
+        var(--blu),
+        var(--gre),
+        var(--purp)
+      );
+      background-size: 400%;
+      animation: logobg 15s linear infinite;
+      @keyframes logobg {
+        from {
+          background-position: 0%;
+        }
+        to {
+          background-position: 500%;
+        }
+      }
+
+      z-index: -2;
+      scale: 1.1;
+      transform-origin: bottom right;
+      border-radius: 0 0 2em 0;
+      height: 100%;
+    }
+  }
+
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 20px 25px rgba(21, 11, 24, 0.89));
+  #main-nav {
+    display: flex;
+    gap: 0.45em;
+    // padding: 2em;
+    .btn-mnav {
+      font-size: 1.4rem;
+      padding: 0.8em 1.1em;
+      background: rgba(23, 22, 27, 0.656);
+      box-shadow: inset 0px 0px 20px 5px #7a7189b6;
+      transition: all 150ms var(--es1);
+      scale: 1;
+      font-family: var(--fontH);
+      text-shadow: 0px -1px 8px rgba(0, 0, 0, 0.344);
+      &:active {
+        // transform: translateY(10px);
+      }
+      &:hover,
+      &.act {
+        box-shadow: inset 0px 0px 35px 5px #9084a4eb;
+        color: white;
+      }
+
+      position: relative;
+      color: #828282;
+      top: 2%;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background: rgb(245, 230, 248);
+        opacity: 0;
+        scale: 1 0;
+        transform-origin: top;
+        mask-image: linear-gradient(to bottom, black -20%, transparent 70%);
+        transition: all 250ms ease;
+        mix-blend-mode: soft-light;
+        backdrop-filter: brightness(150%);
+        z-index: 1;
+        // filter: blur(2px);
+      }
+      &.act,
+      &:hover {
+        opacity: 1;
+        &::before {
+          opacity: 1;
+          scale: 1 4;
+          top: -40%;
+        }
+      }
+      &:hover:not(.act) {
+        opacity: 0.8;
+        &::before {
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+}
+
+#side-contact {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0%;
+  top: 12vh;
+  z-index: 100;
+  padding: 1em;
+  gap: 0.5em;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: #282429;
+    z-index: -4;
+    // border: 2px solid white;
+    // border-right: 100px solid #282429;
+    // border-left: 25px solid #282429;
+    // border-bottom: 25px solid #282429;
+    // clip-path: polygon(20% 0, 100% 0, 100% 100%, 17% 100%, 0 84%, 0 19%);
+    // clip-path: polygon(8% 0, 100% 0, 100% 100%, 7% 100%, 0 93%, 0 9%);
+    // clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0 93%, 0 9%);
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 15% 100%, 0 93%, 0 9%);
+    // transform: skew(0deg, -45deg);
+  }
+  &::after {
+    scale: 1.02;
+    background: white;
+    z-index: -5;
+  }
+  .btn-sc {
+    background: white;
+    width: 45px;
+    height: 45px;
+    padding: 0.55em;
+    border-radius: 50%;
+    box-shadow: 0px 5px 5px black;
+    outline: 2px solid white;
+    &:hover {
+      outline-offset: 5px;
+    }
+    svg {
+      color: #282429;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

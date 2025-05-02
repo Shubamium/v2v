@@ -1,95 +1,70 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import "./home.scss";
+import HomeCarousel from "./home/HomeCarousel";
+import HomeAbout from "./home/HomeAbout";
+import HomeTalentScroll from "./home/HomeTalentScroll";
+import { FaArrowRight } from "react-icons/fa";
+import { getRandomArts } from "./util/utility";
 
 export default function Home() {
+  const auArt = getRandomArts();
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main id="p_home">
+      <HomeCarousel />
+      <HomeAbout />
+      <HomeTalentScroll />
+      <section id="about-us">
+        <div className="confine">
+          <div className="la">
+            <img src={auArt[0]} alt="" className="art" />
+          </div>
+          <div className="c">
+            <svg
+              width="481"
+              height="88"
+              viewBox="0 0 481 88"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="aut"
+            >
+              <path
+                d="M81 0.999997L-3.78552e-06 87.6025L0 0.999996L81 0.999997Z"
+                fill="white"
+              />
+              <path d="M480.5 1H109" stroke="white" />
+            </svg>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+            <svg
+              width="481"
+              height="88"
+              viewBox="0 0 481 88"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="aub"
+            >
+              <path
+                d="M480.5 1.2666L480.5 86.1025L401.152 86.1025L480.5 1.2666Z"
+                stroke="white"
+              />
+              <path d="M371.5 87H0" stroke="white" />
+            </svg>
+
+            <div className="panel">
+              <h2>About Us</h2>
+              <p>
+                Vir2alVerse supports its <u>talents</u> in{" "}
+                <strong> creating quality content</strong> that entertains
+                across a variety of interests!
+              </p>
+              <button className="btn btn-main">
+                Learn More <FaArrowRight />
+              </button>
+            </div>
+          </div>
+          <div className="ra">
+            <img src={auArt[1]} alt="" className="art" />
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
 }
