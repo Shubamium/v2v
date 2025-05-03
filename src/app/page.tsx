@@ -4,6 +4,7 @@ import HomeAbout from "./home/HomeAbout";
 import HomeTalentScroll from "./home/HomeTalentScroll";
 import { FaArrowRight } from "react-icons/fa";
 import { getRandomArts } from "./util/utility";
+import Link from "next/link";
 
 export default function Home() {
   const auArt = getRandomArts();
@@ -55,9 +56,9 @@ export default function Home() {
                 <strong> creating quality content</strong> that entertains
                 across a variety of interests!
               </p>
-              <button className="btn btn-main">
+              <Link href={"/about"} className="btn btn-main">
                 Learn More <FaArrowRight />
-              </button>
+              </Link>
             </div>
           </div>
           <div className="ra">

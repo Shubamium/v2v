@@ -5,6 +5,7 @@ import {
   motion,
   AnimationPlaybackControlsWithThen,
 } from "motion/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 
@@ -28,6 +29,7 @@ export default function HomeTalentScroll({}: Props) {
 
     setCTR(control);
   }, [bounds]);
+  const router = useRouter();
   return (
     <div id="tal-scroll">
       <img src="/d/glow.svg" alt="" className="glow" />
@@ -38,7 +40,12 @@ export default function HomeTalentScroll({}: Props) {
         onPointerLeave={() => ctr?.play()}
       >
         <div className="scroller" ref={ref}>
-          <div className="btn tc">
+          <div
+            className="btn tc"
+            onClick={() => {
+              router.push("/talent/talent-id");
+            }}
+          >
             <div className="art-part">
               <img src="/g/pfpf.png" alt="" className="pfp" />
               <svg
@@ -91,7 +98,12 @@ export default function HomeTalentScroll({}: Props) {
               <h2>Milz Malakite</h2>
             </div>
           </div>
-          <div className="btn tc">
+          <div
+            className="btn tc"
+            onClick={() => {
+              router.push("/talent/talent-id");
+            }}
+          >
             <div className="art-part">
               <img src="/g/pfpf.png" alt="" className="pfp" />
               <svg
@@ -144,7 +156,12 @@ export default function HomeTalentScroll({}: Props) {
               <h2>Milz Malakite</h2>
             </div>
           </div>
-          <div className="btn tc">
+          <div
+            className="btn tc"
+            onClick={() => {
+              router.push("/talent/talent-id");
+            }}
+          >
             <div className="art-part">
               <img src="/g/pfpf.png" alt="" className="pfp" />
               <svg
@@ -197,7 +214,12 @@ export default function HomeTalentScroll({}: Props) {
               <h2>Milz Malakite</h2>
             </div>
           </div>
-          <div className="btn tc">
+          <div
+            className="btn tc"
+            onClick={() => {
+              router.push("/talent/talent-id");
+            }}
+          >
             <div className="art-part">
               <img src="/g/pfpf.png" alt="" className="pfp" />
               <svg

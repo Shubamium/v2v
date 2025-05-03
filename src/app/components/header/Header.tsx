@@ -38,7 +38,7 @@ export default function Header({}: Props) {
           </Link>
           <Link
             href="/news"
-            className={`btn btn-mnav ${path.includes("/bews") ? "act" : ""}`}
+            className={`btn btn-mnav ${path.includes("/news") ? "act" : ""}`}
           >
             NEWS
           </Link>
@@ -58,8 +58,10 @@ export default function Header({}: Props) {
             MERCH
           </Link>
           <Link
-            href="/contact"
-            className={`btn btn-mnav ${path.includes("/contact") ? "act" : ""}`}
+            href="/contacts"
+            className={`btn btn-mnav ${
+              path.includes("/contacts") ? "act" : ""
+            }`}
           >
             CONTACT
           </Link>

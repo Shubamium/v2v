@@ -14,7 +14,7 @@ export default function page({}: Props) {
             <img src="/g/logo1.png" alt="" className="logo" />
             <img src="/g/char3.png" alt="" className="talart" />
           </Link>
-          <Link href={"/talent/zuri-fuyuki"} v className="btn tal">
+          <Link href={"/talent/zuri-fuyuki"} className="btn tal">
             <img src="/g/logo2.png" alt="" className="logo" />
             <img src="/g/char1.png" alt="" className="talart" />
           </Link>

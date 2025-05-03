@@ -96,3 +96,11 @@
     }
   }
 }
+
+body:has(#p_talents) {
+  #footer {
+    margin-top: 0px;
+    z-index: 100;
+    position: relative;
+  }
+}
