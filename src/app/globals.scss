@@ -30,7 +30,7 @@ main {
 }
 .rgb-light {
   position: absolute;
-  top: -30%;
+  top: -40%;
   left: 0%;
   z-index: -100;
   width: 100%;
@@ -104,6 +104,15 @@ a {
     rotate: 360deg;
   }
 }
+@keyframes hovering {
+  from {
+    transform: translateY(1%);
+  }
+  to {
+    transform: translateY(-1%);
+  }
+}
+
 button {
   padding: 0;
   outline: none;
