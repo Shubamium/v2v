@@ -12,6 +12,8 @@ export default function page({}: Props) {
   return (
     <main id="p_talent">
       <div className="confine">
+        <div className="circt"></div>
+        <div className="circb"></div>
         <div className="art">
           <img src="/g/char1.png" alt="" className="main ni" />
           <img src="/g/char1.png" alt="" className="main ni shadow" />
