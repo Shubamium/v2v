@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import { CSSProperties } from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import ReactLenis from "lenis/react";
 
 const gt = localFont({
   src: [
@@ -39,9 +40,11 @@ export default function RootLayout({
           } as CSSProperties
         }
       >
-        <Header />
-        {children}
-        <Footer />
+        <ReactLenis root>
+          <Header />
+          {children}
+          <Footer />
+        </ReactLenis>
       </body>
     </html>
   );
