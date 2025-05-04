@@ -21,9 +21,10 @@ export default function HomeTalentScroll({}: Props) {
   useEffect(() => {
     const target = -bounds.width;
     const amount = 4;
-    const dur = 4 * 5;
+    const dur = 4 * 3;
     const control = animate(x, [0, target], {
       repeat: Infinity,
+      ease: "linear",
       duration: dur,
     });
 

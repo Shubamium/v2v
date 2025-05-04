@@ -23,6 +23,10 @@ body {
   font-family: var(--fontP);
   overflow-x: clip;
   width: 100vw;
+  &:has(#loading:not(.done)) {
+    height: 100vh;
+    overflow: hidden;
+  }
 }
 
 main {

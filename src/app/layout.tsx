@@ -6,6 +6,7 @@ import { CSSProperties } from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import ReactLenis from "lenis/react";
+import Loading from "./components/loading/Loading";
 
 const gt = localFont({
   src: [
@@ -41,6 +42,7 @@ export default function RootLayout({
         }
       >
         <ReactLenis root>
+          <Loading />
           <Header />
           {children}
           <Footer />
