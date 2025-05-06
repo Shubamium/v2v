@@ -1,33 +1,36 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect, useState } from "react";
+import { urlFor } from "../services/db";
 
 type Props = {};
 
-const data = [
-  {
-    title: "Re:Vive DEBUT PV",
-    link: "#",
-    img: "/g/art1.png",
-  },
-  {
-    title: "Re:Vive DEBUT PV 2 ",
-    link: "#",
-    img: "https://picsum.photos/id/30/1920/1080",
-  },
-  {
-    title: "Re:Vive DEBUT PV 3 ",
-    link: "#",
-    img: "https://picsum.photos/id/50/1920/1080",
-  },
-];
+// const data = [
+//   {
+//     title: "Re:Vive DEBUT PV",
+//     link: "#",
+//     img: "/g/art1.png",
+//   },
+//   {
+//     title: "Re:Vive DEBUT PV 2 ",
+//     link: "#",
+//     img: "https://picsum.photos/id/30/1920/1080",
+//   },
+//   {
+//     title: "Re:Vive DEBUT PV 3 ",
+//     link: "#",
+//     img: "https://picsum.photos/id/50/1920/1080",
+//   },
+// ];
 
-export default function HomeCarousel({}: Props) {
+export default function HomeCarousel({ slide }: any) {
   const [page, setPage] = useState(0);
+
+  const data = slide;
 
   useEffect(() => {
     const loadImages = () => {
-      data.forEach((item) => {
+      data.forEach((item:any) => {
         const img = new Image();
         img.src = item.img;
       });
@@ -74,8 +77,8 @@ export default function HomeCarousel({}: Props) {
             duration: 0.6,
             ease: "easeInOut",
           }}
-          key={data[page].title + "img"}
-          src={data[page].img}
+          key={data[page]._key + "img"}
+          src={urlFor(data[page].i).height(1080).url()}
           alt=""
           className="current"
         />
@@ -98,12 +101,12 @@ export default function HomeCarousel({}: Props) {
               ease: "easeOut",
             }}
             className="data"
-            key={data[page].title}
+            key={data[page].t}
           >
-            <h2>{data[page].title}</h2>
-            <a href={data[page].link} className="btn btn-main">
+            <h2>{data[page].t}</h2>
+						{data[page].url &&  <a target="_blank" href={data[page].url} className="btn btn-main">
               Check it out here!
-            </a>
+            </a>}
           </motion.div>
         </AnimatePresence>
         <div className="pager">
@@ -114,7 +117,7 @@ export default function HomeCarousel({}: Props) {
                 onClick={() => {
                   setPage(index);
                 }}
-                key={d.title + index}
+                key={d._key + 'pager' + index}
               ></div>
             );
           })}

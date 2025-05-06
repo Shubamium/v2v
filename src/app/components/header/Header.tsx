@@ -81,7 +81,7 @@ export default function Header({}: Props) {
           <FaDiscord />
         </a>
       </div>
-      <img src="/d/glow.svg" alt="" className="rgb-light" />
+      <img src="/d/glow1.png" alt="" className="rgb-light" />
     </>
   );
 }

@@ -19,7 +19,7 @@ export default function page({}: Props) {
       </section>
 
       <section id="category">
-        <img src="/d/glow.svg" alt="" className="glow ni" />
+        <img src="/d/glow1.png" alt="" className="glow ni" />
         <div className="confine">
           <div className="cl">
             <button className="btn btn-cat act">All</button>

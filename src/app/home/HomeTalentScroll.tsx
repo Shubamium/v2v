@@ -1,8 +1,8 @@
 "use client";
 import {
-  useAnimate,
   useMotionValue,
   motion,
+  animate,
   AnimationPlaybackControlsWithThen,
 } from "motion/react";
 import { useRouter } from "next/navigation";
@@ -11,20 +11,19 @@ import useMeasure from "react-use-measure";
 
 type Props = {};
 
-export default function HomeTalentScroll({}: Props) {
-  const [ref, bounds] = useMeasure();
-  const [scope, animate] = useAnimate();
+export function HomeTalentScroll({}: Props) {
+  const [ref, bounds] = useMeasure({ debounce: 1000 });
   const x = useMotionValue(0);
   const [ctr, setCTR] = useState<AnimationPlaybackControlsWithThen | null>(
     null
   );
   useEffect(() => {
     const target = -bounds.width;
-    const amount = 4;
     const dur = 4 * 3;
+
     const control = animate(x, [0, target], {
-      repeat: Infinity,
       ease: "linear",
+      repeat: Infinity,
       duration: dur,
     });
 
@@ -33,9 +32,11 @@ export default function HomeTalentScroll({}: Props) {
   const router = useRouter();
   return (
     <div id="tal-scroll">
-      <img src="/d/glow.svg" alt="" className="glow" />
+      <img src="/d/glow1.png" alt="" className="glow" />
       <motion.div
-        style={{ x }}
+        style={{ x, willChange: "transform" }}
+        // animate={{ x: ["0%", "100%"] }}
+        // transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
         className="wrapper"
         onPointerEnter={() => ctr?.pause()}
         onPointerLeave={() => ctr?.play()}
@@ -214,7 +215,7 @@ export default function HomeTalentScroll({}: Props) {
             <div className="info">
               <h2>Milz Malakite</h2>
             </div>
-          </div>
+          </div>{" "}
           <div
             className="btn tc"
             onClick={() => {
@@ -488,7 +489,7 @@ export default function HomeTalentScroll({}: Props) {
             </div>
           </div>
         </div>
-        {/* <div className="scroller">
+        <div className="scroller">
           <div className="btn tc">
             <div className="art-part">
               <img src="/g/pfpf.png" alt="" className="pfp" />
@@ -701,8 +702,10 @@ export default function HomeTalentScroll({}: Props) {
               <h2>Milz Malakite</h2>
             </div>
           </div>
-        </div> */}
+        </div>
       </motion.div>
     </div>
   );
 }
+
+export default React.memo(HomeTalentScroll);

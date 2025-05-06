@@ -10,6 +10,7 @@ export default function HomeAbout({}: Props) {
     axis: "y",
     target: contRef,
     offset: ["start end", "end start"],
+    // container: contRef
   });
 
   const lP = useTransform(progress.scrollYProgress, [0, 1], [-200, 100]);

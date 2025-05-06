@@ -8,7 +8,7 @@ import "./footer.scss";
 export default function Footer({}: Props) {
   return (
     <footer id="footer">
-      <img src="/d/glow.svg" alt="" className="glow ni" />
+      <img src="/d/glow1.png" alt="" className="glow ni" />
       <div className="tl ni"></div>
       <div className="tr ni"></div>
       <div className="tlr ni"></div>
