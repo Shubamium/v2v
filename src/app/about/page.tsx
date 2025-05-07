@@ -57,7 +57,8 @@ export default function page({}: Props) {
                 At Vir2alVerse, we value talent freedom. When a talent proposes
                 a great idea, that talent will get all the support they need to
                 make that idea shine. Talents are also free to pursue a wide
-                variety of niches at their discretion, including NSFW content.{" "}
+                variety of niches at their discretion, including NSFW
+                content.{" "}
               </p>
               <p>
                 The last thing we want to do is place unnecessary restrictions
@@ -86,7 +87,9 @@ export default function page({}: Props) {
         </div>
       </section>
       <section id="ourtal">
-        <img src="/g/art1.png" alt="" className="art" />
+        <div className="l">
+          <img src="/g/art1.png" alt="" className="art" />
+        </div>
         <div className="topl"></div>
         <div className="r">
           <svg
