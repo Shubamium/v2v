@@ -1,27 +1,60 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
-type Props = {};
 import "./talent.scss";
 import Link from "next/link";
 import { FaArrowRight, FaShoppingBag, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { BsArrowLeft, BsArrowLeftShort } from "react-icons/bs";
 import { BiHeart, BiShoppingBag } from "react-icons/bi";
+import { fetchData, urlFor } from "@/app/services/db";
+import { redirect } from "next/navigation";
 
-export default function page({}: Props) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+export default async function page({ params }: Props) {
+  const par = await params;
+  const td = await fetchData<any>(`
+		*[_type == 'talents' && slug.current == '${par.id}'][0]{
+			...,
+			arts{
+			...,
+			'vid': vid.asset->url
+			}
+		}
+	`);
+  if (!td) {
+    redirect("/");
+  }
+  console.log(td);
   return (
-    <main id="p_talent">
+    <main id="p_talent" style={{ "--accent": td.ca } as CSSProperties}>
       <div className="confine">
         <div className="circt ni"></div>
         <div className="circb ni"></div>
         <div className="art">
-          <img src="/g/char1.png" alt="" className="main ni" />
-          <img src="/g/char1.png" alt="" className="main ni shadow" />
+          {/* <img src="/g/milzfb.gif" alt="" className="main ni" /> */}
+          <video
+            className="main ni"
+            src={td.arts?.vid}
+            autoPlay={true}
+            muted
+            loop
+          />
+
+          <img
+            src={td.arts.fb && urlFor(td.arts.st).height(1300).url()}
+            alt=""
+            className="main ni shadow"
+          />
         </div>
         <div className="info">
           <div className="top">
             <div className="logo-part">
-              <img src="/g/logo2.png" alt="" />
+              <img
+                src={td.arts.logo && urlFor(td.arts.logo).height(500).url()}
+                alt=""
+              />
             </div>
             <div className="dia">
               <div className="ts"></div>
@@ -45,28 +78,25 @@ export default function page({}: Props) {
               </svg>
 
               <p>
-                “Sitting upon her throne, the ruler of crystal dragons herself,
+                {/* “Sitting upon her throne, the ruler of crystal dragons herself,
                 is the hamster Milz Malakite. Although she might seem too cool
                 for this world, you’ll be quickly charmed by her goofy hamster
-                antics.”
+                antics.” */}
+                {td.bio}
               </p>
             </div>
           </div>
           <div className="bot">
             <div className="l">
               <div className="info-list">
-                <div className="info">
-                  <h3>BIRTHDAY</h3>
-                  <p>April 20</p>
-                </div>
-                <div className="info">
-                  <h3>BIRTHDAY</h3>
-                  <p>April 20</p>
-                </div>
-                <div className="info">
-                  <h3>BIRTHDAY</h3>
-                  <p>April 20</p>
-                </div>
+                {td.il?.map((i: any) => {
+                  return (
+                    <div className="info" key={i._key}>
+                      <h3>{i.t}</h3>
+                      <p>{i.v}</p>
+                    </div>
+                  );
+                })}
               </div>
               <Link href={"/talents"} className="btn btn-ext">
                 <BsArrowLeft />
@@ -78,7 +108,7 @@ export default function page({}: Props) {
                 <iframe
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/ash9FVn3trc?si=7-kjot7BqaYrRVhA"
+                  src={`https://www.youtube.com/embed/${td.vid}`}
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -88,22 +118,22 @@ export default function page({}: Props) {
               </div>
               <div className="misc">
                 <div className="contacts">
-                  <a href="#" className="btn">
+                  <a href={td.links?.x} target="_blank" className="btn">
                     {" "}
                     <FaXTwitter />
                   </a>
-                  <a href="#" className="btn">
+                  <a href={td.links?.yt} className="btn">
                     {" "}
                     <FaYoutube />
                   </a>
                 </div>
                 <div className="external">
-                  <a href="#" className="btn btn-ext">
+                  <a href={td.links?.d} className="btn btn-ext">
                     {" "}
                     <BiHeart />
                     DONATE
                   </a>
-                  <a href="#" className="btn btn-ext">
+                  <a href={td.links?.m} className="btn btn-ext">
                     <FaShoppingBag />
                     MERCH
                   </a>

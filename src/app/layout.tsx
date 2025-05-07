@@ -42,7 +42,7 @@ export default function RootLayout({
         }
       >
         <ReactLenis root>
-          {/* <Loading /> */}
+          <Loading />
           <Header />
           {children}
           <Footer />

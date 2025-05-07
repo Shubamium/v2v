@@ -1,28 +1,51 @@
 import React from "react";
 
-type Props = {};
+type Props = {
+  params: Promise<{ id: string }>;
+};
 
 import "./read.scss";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
 import { LuArrowUpToLine } from "react-icons/lu";
-export default function page({}: Props) {
+import { fetchData, urlFor } from "@/app/services/db";
+import { redirect } from "next/navigation";
+import { PortableText } from "next-sanity";
+export default async function page({ params }: Props) {
+  const id = (await params).id;
+
+  const n = await fetchData<any>(`
+		*[_type == 'news' && slug.current == '${id}'][0]{
+			...,
+			'cat': cat->name
+		}
+	`);
+  if (!n) {
+    redirect("/");
+  }
   return (
     <main id="p_read">
       <div id="top"></div>
       <section id="newsh">
         <div className="ban">
-          <img src="/g/art1.png" alt="" className="banner" />
+          <img src={n.bm && urlFor(n.bm).url()} alt="" className="banner" />
         </div>
         <div className="title-part">
           <div className="confine">
-            <h2 className="t">Write the news Title Here!</h2>
+            <h2 className="t">{n.t}</h2>
             <div className="b">
-              <p className="d">27 June 2025</p>
+              <p className="d">{new Date(n.d).toDateString()}</p>
               <div className="tags">
-                <p className="btn">Category Here</p>
-                <p className="btn">Tag 1</p>
-                <p className="btn">Tag 2</p>
+                <p className="btn">{n.cat}</p>
+                {n.tags &&
+                  n.tags.map((t: any) => {
+                    return (
+                      <p className="btn" key={t}>
+                        {t}
+                      </p>
+                    );
+                  })}
+                {/* <p className="btn">Tag 2</p> */}
               </div>
             </div>
           </div>
@@ -33,7 +56,17 @@ export default function page({}: Props) {
         <img src="/d/fgr.png" alt="" />
       </div>
       <article className="confine">
-        <p>
+        <PortableText
+          value={n.a}
+          components={{
+            types: {
+              image: ({ value }) => {
+                return <img src={urlFor(value).url()} alt="" />;
+              },
+            },
+          }}
+        />
+        {/* <p>
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
           ab illo inventore veritatis et quasi architecto beatae vitae dicta
@@ -63,7 +96,7 @@ export default function page({}: Props) {
           dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
           quia non numquam eius modi tempora incidunt ut labore et dolore magnam
           aliquam quaerat voluptatem.
-        </p>
+        </p> */}
       </article>
       <div className="newsf confine">
         <div className="panel">

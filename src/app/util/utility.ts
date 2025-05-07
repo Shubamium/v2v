@@ -1,5 +1,5 @@
 export const artList = [
-  "/g/char1.png",
+  "/g/milzstand.png",
   "/g/char2.png",
   "/g/char3.png",
   "/g/char4.png",

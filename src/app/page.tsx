@@ -8,17 +8,26 @@ import HomeAboutUs from "./home/HomeAboutUs";
 import { fetchData } from "./services/db";
 
 export default async function Home() {
-  const gd = await fetchData(`
+  const gd = await fetchData<any>(`
 		*[_type == 'general' && preset == 'main'][0]{
 		...
 		}
 	`);
-  console.log(gd);
+  const td =
+    await fetchData<any>(`*[_type == 'talents']  | order(_createdAt asc){
+		_id,
+		n,
+		ca,
+		slug,
+		arts{
+			pfp,
+		}
+	}`);
   return (
     <main id="p_home">
       <HomeCarousel slide={gd.hs ?? []} />
       <HomeAbout />
-      <HomeTalentScroll />
+      <HomeTalentScroll tl={td} />
       <HomeAboutUs />
     </main>
   );

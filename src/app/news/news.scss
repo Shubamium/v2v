@@ -132,6 +132,10 @@
         text-shadow: 1px 1px 4px #312d36;
         &.act {
           background: linear-gradient(to right, var(--purp), var(--yell));
+          &:hover {
+            text-shadow: 1px 1px 5px #312d36;
+            color: white;
+          }
         }
       }
     }
@@ -273,10 +277,15 @@
         font-family: var(--fontH);
         align-items: center;
         padding: 0.25em;
+        transition: inherit;
         a {
           display: flex;
           align-items: center;
           gap: 1em;
+        }
+
+        &:hover {
+          padding-right: 1em;
         }
       }
     }

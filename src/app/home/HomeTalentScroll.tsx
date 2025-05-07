@@ -6,12 +6,13 @@ import {
   AnimationPlaybackControlsWithThen,
 } from "motion/react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
+import { urlFor } from "../services/db";
 
 type Props = {};
 
-export function HomeTalentScroll({}: Props) {
+export function HomeTalentScroll({ tl }: any) {
   const [ref, bounds] = useMeasure({ debounce: 1000 });
   const x = useMotionValue(0);
   const [ctr, setCTR] = useState<AnimationPlaybackControlsWithThen | null>(
@@ -42,65 +43,71 @@ export function HomeTalentScroll({}: Props) {
         onPointerLeave={() => ctr?.play()}
       >
         <div className="scroller" ref={ref}>
-          <div
-            className="btn tc"
-            onClick={() => {
-              router.push("/talent/talent-id");
-            }}
-          >
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
+          {tl.map((t: any) => {
+            return (
+              <div
+                className="btn tc"
+                onClick={() => {
+                  router.push("/talent/" + t.slug.current);
+                }}
+                style={{ "--accent": t.ca } as CSSProperties}
+                key={t._id}
               >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
+                <div className="art-part">
+                  <img src={urlFor(t.arts.pfp).url()} alt="" className="pfp" />
+                  <svg
+                    width="109"
+                    height="104"
+                    viewBox="0 0 109 104"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="wings l"
+                  >
+                    <path
+                      d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
+                      stroke="white"
+                    />
+                    <path
+                      d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
+                      fill="white"
+                      stroke="white"
+                    />
+                    <path
+                      d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
+                      stroke="white"
+                    />
+                  </svg>
 
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div
+                  <svg
+                    width="109"
+                    height="104"
+                    viewBox="0 0 109 104"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="wings r"
+                  >
+                    <path
+                      d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
+                      stroke="white"
+                    />
+                    <path
+                      d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
+                      fill="white"
+                      stroke="white"
+                    />
+                    <path
+                      d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
+                      stroke="white"
+                    />
+                  </svg>
+                </div>
+                <div className="info">
+                  <h2>{t.n}</h2>
+                </div>
+              </div>
+            );
+          })}
+          {/* <div
             className="btn tc"
             onClick={() => {
               router.push("/talent/talent-id");
@@ -273,435 +280,139 @@ export function HomeTalentScroll({}: Props) {
             <div className="info">
               <h2>Milz Malakite</h2>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="scroller">
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
+          {tl.map((t: any) => {
+            return (
+              <div
+                className="btn tc"
+                onClick={() => {
+                  router.push("/talent/" + t.slug.current);
+                }}
+                style={{ "--accent": t.ca } as CSSProperties}
+                key={t._id + "a"}
               >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
+                <div className="art-part">
+                  <img src={urlFor(t.arts.pfp).url()} alt="" className="pfp" />
+                  <svg
+                    width="109"
+                    height="104"
+                    viewBox="0 0 109 104"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="wings l"
+                  >
+                    <path
+                      d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
+                      stroke="white"
+                    />
+                    <path
+                      d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
+                      fill="white"
+                      stroke="white"
+                    />
+                    <path
+                      d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
+                      stroke="white"
+                    />
+                  </svg>
 
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
+                  <svg
+                    width="109"
+                    height="104"
+                    viewBox="0 0 109 104"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="wings r"
+                  >
+                    <path
+                      d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
+                      stroke="white"
+                    />
+                    <path
+                      d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
+                      fill="white"
+                      stroke="white"
+                    />
+                    <path
+                      d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
+                      stroke="white"
+                    />
+                  </svg>
+                </div>
+                <div className="info">
+                  <h2>{t.n}</h2>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <div className="scroller">
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
+          {tl.map((t: any) => {
+            return (
+              <div
+                className="btn tc"
+                onClick={() => {
+                  router.push("/talent/" + t.slug.current);
+                }}
+                style={{ "--accent": t.ca } as CSSProperties}
+                key={t._id + "b"}
               >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
+                <div className="art-part">
+                  <img src={urlFor(t.arts.pfp).url()} alt="" className="pfp" />
+                  <svg
+                    width="109"
+                    height="104"
+                    viewBox="0 0 109 104"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="wings l"
+                  >
+                    <path
+                      d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
+                      stroke="white"
+                    />
+                    <path
+                      d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
+                      fill="white"
+                      stroke="white"
+                    />
+                    <path
+                      d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
+                      stroke="white"
+                    />
+                  </svg>
 
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
-          <div className="btn tc">
-            <div className="art-part">
-              <img src="/g/pfpf.png" alt="" className="pfp" />
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings l"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-
-              <svg
-                width="109"
-                height="104"
-                viewBox="0 0 109 104"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="wings r"
-              >
-                <path
-                  d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
-                  stroke="white"
-                />
-                <path
-                  d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
-                  stroke="white"
-                />
-              </svg>
-            </div>
-            <div className="info">
-              <h2>Milz Malakite</h2>
-            </div>
-          </div>
+                  <svg
+                    width="109"
+                    height="104"
+                    viewBox="0 0 109 104"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="wings r"
+                  >
+                    <path
+                      d="M54.4963 8.12097L74.1946 43.058L35.1209 31.3064L2.18277 1.45117L54.4963 8.12097Z"
+                      stroke="white"
+                    />
+                    <path
+                      d="M80.9149 51.3894L95.7981 78.264L66.2758 69.2244L41.3892 46.2588L80.9149 51.3894Z"
+                      fill="white"
+                      stroke="white"
+                    />
+                    <path
+                      d="M98.9017 87.4869L107 102.268L90.9363 97.2961L77.395 84.665L98.9017 87.4869Z"
+                      stroke="white"
+                    />
+                  </svg>
+                </div>
+                <div className="info">
+                  <h2>{t.n}</h2>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </motion.div>
     </div>
