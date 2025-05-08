@@ -9,16 +9,34 @@ import CategorySelect from "./CategorySelect";
 type Props = {
   searchParams: Promise<{
     cat: string;
+    tags?: string;
   }>;
 };
 
 export default async function page({ searchParams }: Props) {
-  let cat: string | null = (await searchParams).cat ?? null;
+  const params = await searchParams;
+  let cat: string | null = params.cat ?? null;
+
+  const tl = params.tags?.split(",") ?? [];
+
   if (cat === "all") cat = null;
+  const listedTag = tl.map((t: any) => `"${t}"`).join(",");
+
+  const categoryCheck = cat ? `&& cat->slug.current == '${cat}'` : "";
+  const tagCheck = listedTag
+    ? `&& count((tags[])[@ in [${listedTag}]]) > 0`
+    : "";
+  console.log(tagCheck);
 
   const data = await fetchData<any[]>(`
-		*[_type == 'news' ${cat ? `&& cat->slug.current == '${cat}'` : ""}]{
-			...,
+		*[_type == 'news' ${categoryCheck} ${tagCheck}] {
+			_id,
+			t,
+			bl,
+			slug,
+			tags,
+			cat,
+			d,
 			'cat': cat->slug.current,
 			'catName': cat->name
 		}
@@ -39,7 +57,20 @@ export default async function page({ searchParams }: Props) {
           <div className="r"></div>
         </div>
       </section>
-      <CategorySelect cl={cl} ac={cat} />
+      <CategorySelect cl={cl} ac={cat} tl={tl} />
+      {tl && tl.length > 0 && (
+        <div className="applied-tags confine">
+          <p>Searching tags:</p>
+          {tl.map((t: any) => {
+            return (
+              <p className="t" key={t}>
+                {t}
+              </p>
+            );
+          })}
+        </div>
+      )}
+
       <section id="nl" className="confine">
         {data.map((n: any) => {
           return (
