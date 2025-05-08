@@ -1,4 +1,42 @@
 #p_contacts {
+  #cont-load {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    // translate: -50% -50%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.576);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    p {
+      color: white;
+      font-size: 1.2rem;
+      margin: 2em 0;
+    }
+    svg {
+      animation: speen 1s infinite ease-in-out;
+      width: 50px;
+      height: 50px;
+    }
+
+    &.visible {
+      opacity: 1;
+      user-select: initial;
+      pointer-events: initial;
+    }
+
+    transition: all 900ms var(--es1);
+    &.hidden {
+      opacity: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
   #ch {
     padding-top: 100px;
     position: relative;
@@ -96,8 +134,8 @@
     background: url("/b/bg-line.png");
     background-size: 100% 100%;
     .confine {
-      background: url("/b/dot.png"),
-        linear-gradient(to bottom, #312d36, #221e23);
+      background:
+        url("/b/dot.png"), linear-gradient(to bottom, #312d36, #221e23);
       padding: 2em 4em;
       margin-top: 5em;
       max-width: min(800px, 90%);
