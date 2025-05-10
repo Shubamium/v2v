@@ -18,13 +18,15 @@ body {
   user-select: none;
   pointer-events: none;
 }
+html {
+}
 body {
   background: url("/b/zigs.png"), #1d1d1d;
   background-size: 15px, 100%;
   font-family: var(--fontP);
-  overflow-x: clip;
   width: 100vw;
   color: white;
+
   &:has(#loading:not(.done)) {
     height: 100vh;
     overflow: hidden;
@@ -34,6 +36,8 @@ body {
 main {
   width: 100%;
   height: 100%;
+  overflow-x: clip;
+  position: relative;
 }
 .rgb-light {
   position: absolute;

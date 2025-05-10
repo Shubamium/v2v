@@ -1,3 +1,4 @@
+@use "mixins" as *;
 #p_talents {
   .infitext {
     position: absolute;
@@ -11,19 +12,46 @@
       opacity: 0.02;
     }
   }
+
+  @include mq(1024) {
+    // min-height: 2000px;
+    padding-bottom: 400px;
+  }
   #tal-list {
+    .th {
+      text-align: center;
+      margin-top: 50px;
+      h2 {
+        font-size: 1.5rem;
+      }
+      p {
+        opacity: 0.2;
+      }
+    }
     .tl {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       max-width: 1440px;
       margin: 0 auto;
       gap: 4em;
+      @include mq(1024) {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+      }
+
       .tal {
         position: relative;
         height: 900px;
         transform: translateY(13%);
         transition: all 1000ms var(--es1);
 
+        @include mq(1024) {
+          height: auto;
+          overflow: hidden;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
         --accent: #955673;
         filter: brightness(90%);
         &::before {
@@ -36,6 +64,9 @@
           background: var(--accent);
           z-index: -10;
           mask-image: linear-gradient(to bottom, transparent, black 100%);
+          @include mq(1024) {
+            mask-image: linear-gradient(to right, transparent, black 100%);
+          }
           opacity: 0.3;
           transition: all 500ms var(--es1);
         }
@@ -46,6 +77,9 @@
           margin: 0 auto;
           object-fit: contain;
           object-position: bottom center;
+          @include mq(420) {
+            object-position: top;
+          }
         }
         &:hover {
           transform: translateY(8%);
@@ -108,7 +142,72 @@
           filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746));
           transition: inherit;
           transform-origin: left top;
+          @include mq(1024) {
+            transform: translateX(-10%);
+            top: -10%;
+          }
+          @include mq(550) {
+            transform: translateX(-20%);
+          }
+          @include mq(420) {
+            transform: translateX(-40%);
+          }
         }
+      }
+    }
+  }
+  .tl-control {
+    .btn-n,
+    .btn-p {
+      position: fixed;
+      right: 0%;
+      top: 50%;
+      color: black;
+      width: 50px;
+      height: 50px;
+      z-index: 20;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, var(--blu), var(--gre));
+        rotate: 45deg;
+        z-index: -2;
+        left: 50%;
+        scale: 2.2;
+        transition: all 250ms var(--es1);
+      }
+      &::after {
+        scale: 1.9;
+        z-index: -1;
+        outline: 2px solid black;
+      }
+      &:hover {
+        &::before {
+          scale: 2.4;
+        }
+        &::after {
+          outline-width: 5px;
+        }
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .btn-p {
+      left: 0%;
+      right: unset;
+
+      &::after,
+      &::before {
+        left: unset;
+        background: linear-gradient(to right, var(--purp), var(--yell));
+        right: 50%;
       }
     }
   }

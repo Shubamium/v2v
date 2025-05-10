@@ -1,9 +1,13 @@
+@use "mixins" as *;
 #p_read {
   #newsh {
     .banner {
       height: 700px;
       width: 100%;
       object-fit: cover;
+      @include mq(768) {
+        height: auto;
+      }
     }
     .ban {
       position: relative;
@@ -29,19 +33,37 @@
 
         .t {
           font-size: 3rem;
+          @include mq(768) {
+            font-size: 2.3rem;
+          }
+          @include mq(550) {
+            font-size: 2rem;
+          }
+          @include mq(420) {
+            font-size: 1.3rem;
+          }
         }
         .b {
           display: flex;
           gap: 2em;
           align-items: center;
           margin-top: 1em;
+          @include mq(550) {
+            flex-wrap: wrap;
+          }
           .tags {
             display: flex;
             gap: 1em;
             align-items: center;
-
+            @include mq(550) {
+              gap: 0.5em;
+            }
             .d {
               color: #272727;
+              @include mq(768) {
+                width: 100%;
+                flex-wrap: wrap;
+              }
             }
             .btn {
               padding: 0.25em 1em;
@@ -61,11 +83,18 @@
     padding: 1em 0;
     img {
       height: 50px;
+      @include mq(559) {
+        height: auto;
+        width: 30%;
+      }
     }
   }
   article {
-    max-width: min(800px, 80%);
+    max-width: min(800px, 90%);
     // margin-top: 40px;
+    @include mq(550) {
+      font-size: 1rem;
+    }
     img {
       width: 100%;
       height: auto;
@@ -76,12 +105,18 @@
       margin: 1em 0;
       font-size: 1.2rem;
       line-height: 1.4;
+      @include mq(550) {
+        font-size: inherit;
+      }
     }
   }
   .newsf {
-    max-width: min(800px, 80%);
+    max-width: min(800px, 90%);
     filter: drop-shadow(0px 0px 9px rgba(0, 0, 0, 0.731));
     margin-top: 100px;
+    @include mq(550) {
+      max-width: 90%;
+    }
     .rgb-line {
       width: 100%;
       height: 5px;
@@ -101,11 +136,21 @@
       gap: 1em;
       // clip-path: polygon(0 0, 95% 0, 100% 20%, 100% 100%, 95% 100%, 0 100%);
       clip-path: polygon(0 0, 96% 0, 100% 10%, 100% 100%, 3% 100%, 0 88%);
+      @include mq(420) {
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+      }
       .btn-main {
         display: flex;
         align-items: center;
         font-size: 1.2rem;
         gap: 1em;
+        @include mq(550) {
+          font-size: 1rem;
+        }
+        @include mq(420) {
+          width: 100%;
+        }
       }
     }
   }

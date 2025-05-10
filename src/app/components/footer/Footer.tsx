@@ -26,25 +26,25 @@ export default function Footer({}: Props) {
             <div className="top">
               <h2>NAVIGATION</h2>
               <nav className="mininav">
-                <Link href={"#"} className="btn btn-minav">
+                <Link href={"/"} className="btn btn-minav">
                   Home
                 </Link>
-                <Link href={"#"} className="btn btn-minav">
+                <Link href={"/talents"} className="btn btn-minav">
                   Talents
                 </Link>
-                <Link href={"#"} className="btn btn-minav">
+                <Link href={"/about"} className="btn btn-minav">
                   About
                 </Link>
-                <Link href={"#"} className="btn btn-minav">
+                <Link href={"/guidelines"} className="btn btn-minav">
                   Guidelines
                 </Link>
-                <Link href={"#"} className="btn btn-minav">
+                <Link href={"/news"} className="btn btn-minav">
                   News
                 </Link>
                 <Link href={"#"} className="btn btn-minav">
                   Merch
                 </Link>
-                <Link href={"#"} className="btn btn-minav">
+                <Link href={"/contacts"} className="btn btn-minav">
                   Contact
                 </Link>
               </nav>

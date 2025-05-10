@@ -101,7 +101,7 @@ export default async function page({ params }: Props) {
                   );
                 })}
               </div>
-              <Link href={"/talents"} className="btn btn-ext">
+              <Link href={"/talents"} scroll={true} className="btn btn-ext">
                 <BsArrowLeft />
                 TALENT LIST
               </Link>

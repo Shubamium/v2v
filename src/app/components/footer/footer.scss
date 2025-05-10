@@ -1,6 +1,11 @@
+@use "mixins" as *;
 #footer {
   margin-top: 250px;
   position: relative;
+  overflow-x: clip;
+  @include mq(550) {
+    margin-top: 120px;
+  }
   .glow {
     position: absolute;
     width: 100%;
@@ -41,6 +46,10 @@
     z-index: 5;
     left: 0%;
     height: 70px;
+    @include mq(1024) {
+      max-width: 30%;
+      height: auto;
+    }
   }
   .fgr {
     position: absolute;
@@ -48,6 +57,10 @@
     z-index: 5;
     height: 70px;
     right: 0%;
+    @include mq(1024) {
+      max-width: 30%;
+      height: auto;
+    }
   }
   .tlr {
     position: absolute;
@@ -79,11 +92,17 @@
       left: 0%;
       top: 25%;
       filter: drop-shadow(0px 0px 14px black);
+      @include mq(550) {
+        top: 15%;
+      }
     }
     .frpo {
       position: absolute;
       right: 0%;
       top: 25%;
+      @include mq(550) {
+        top: 15%;
+      }
       filter: drop-shadow(0px 0px 14px black);
     }
   }
@@ -92,7 +111,24 @@
     grid-template-columns: 1fr 1fr 1fr;
     padding-block: 120px;
     gap: 3em;
+    @include mq(550) {
+      padding-block: 20px;
+    }
+    @include mq(1024) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mq(550) {
+      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .chibs {
+      @include mq(550) {
+        height: 300px;
+        width: 300px;
+      }
       &:hover {
         img {
           scale: 1.05;
@@ -125,6 +161,7 @@
         position: relative;
         transition: inherit;
         filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.348));
+        object-fit: contain;
       }
       position: relative;
       z-index: 1;
@@ -200,6 +237,9 @@
       }
     }
     .r {
+      @include mq(1024) {
+        grid-column: span 2;
+      }
       .top,
       .b {
         display: flex;
@@ -217,6 +257,10 @@
           color: #b1b1b1;
           font-size: 1.1rem;
           font-weight: bolder;
+          @include mq(550) {
+            text-align: right;
+            font-size: 1rem;
+          }
         }
         a {
           color: #554f5c;

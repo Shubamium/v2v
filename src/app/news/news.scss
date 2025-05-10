@@ -1,3 +1,4 @@
+@use "mixins" as *;
 #p_news {
   #heading {
     position: relative;
@@ -39,6 +40,18 @@
             left: 0%;
           }
         }
+
+        @include mq(550) {
+          width: 30px;
+          height: 30px;
+        }
+        @include mq(420) {
+          width: 20px;
+          height: 20px;
+        }
+        @include mq(350) {
+          display: none;
+        }
         &::before {
           content: "";
           position: absolute;
@@ -60,6 +73,18 @@
         rotate: -45deg;
         animation: flomp2 1s infinite ease-in alternate-reverse;
         position: relative;
+
+        @include mq(550) {
+          width: 30px;
+          height: 30px;
+        }
+        @include mq(420) {
+          width: 20px;
+          height: 20px;
+        }
+        @include mq(350) {
+          display: none;
+        }
         @keyframes flomp2 {
           from {
             right: -5%;
@@ -89,6 +114,12 @@
         border-radius: 5em;
         box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.465) inset;
         text-shadow: 0px 0px 4px #312d36;
+        @include mq(768) {
+          font-size: 3rem;
+        }
+        @include mq(550) {
+          font-size: 2rem;
+        }
       }
     }
   }
@@ -112,6 +143,13 @@
       justify-content: space-between;
       padding: 1em 0em;
       align-items: center;
+      @include mq(1024) {
+        overflow-y: scroll;
+        max-width: 100%;
+        flex-direction: row-reverse;
+        padding: 1em;
+        gap: 1em;
+      }
     }
     .cl {
       display: flex;
@@ -123,7 +161,9 @@
         outline: 2px solid white;
         border-radius: 1em;
         font-family: var(--fontH);
-
+        @include mq(420) {
+          font-size: 1rem;
+        }
         &:hover {
           background: white;
           color: #312d36;
@@ -222,6 +262,12 @@
         p {
           text-shadow: none;
         }
+        @include mq(550) {
+          font-size: 1rem;
+        }
+        @include mq(420) {
+          font-size: 0.9rem;
+        }
         gap: 1em;
         svg {
           transition: all 500ms ease;
@@ -261,6 +307,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 4em;
+
+    @include mq(1280px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mq(1024) {
+      grid-template-columns: 1fr;
+    }
     .n {
       width: 100%;
       position: relative;
@@ -337,11 +390,17 @@
 
           .news {
             font-size: 1.4rem;
+            @include mq(420) {
+              font-size: 1.2rem;
+            }
           }
 
           .excerpt {
             font-size: 0.9rem;
             opacity: 0.8;
+            @include mq(420) {
+              font-size: 0.8rem;
+            }
           }
           .tags {
             display: flex;
@@ -387,6 +446,14 @@
           display: flex;
           align-items: center;
           gap: 1em;
+          @include mq(420) {
+            font-size: 0.8rem;
+          }
+        }
+        @include mq(420) {
+          img {
+            max-width: 30%;
+          }
         }
 
         &:hover {

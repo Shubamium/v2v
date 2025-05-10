@@ -1,3 +1,4 @@
+@use "mixins" as *;
 #p_talent {
   --accent: #d8ffff;
   // --accent: #f1baf2;
@@ -34,7 +35,19 @@
     grid-template-columns: 1fr 1.1fr;
     position: relative;
 
+    @include mq(1440) {
+      grid-template-columns: 1fr 2fr;
+    }
+    @include mq(1024) {
+      // grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
     padding-right: 10%;
+    @include mq(1280) {
+      padding-right: 5%;
+    }
     .art {
       position: relative;
       // background: red;
@@ -46,9 +59,24 @@
         object-fit: cover;
         height: 900px;
         padding-top: 50px;
+
+        @include mq(768) {
+          width: 500px;
+          height: 500px;
+        }
+        @include mq(420) {
+          padding-top: 10px;
+        }
         &:not(.shadow) {
           // background: red;
           // filter: brightness(33%);
+          @include mq(1024) {
+            left: 50%;
+            position: relative;
+          }
+          @include mq(550) {
+            max-width: 120%;
+          }
         }
         &.shadow {
           height: 1300px;
@@ -61,16 +89,40 @@
           transform-origin: left;
           filter: saturate(0) brightness(50%);
           opacity: 0.2;
+          @include mq(1024) {
+            width: 1000px;
+            height: 1000px;
+          }
+          @include mq(768) {
+            width: 800px;
+            height: 800px;
+          }
+          @include mq(420) {
+            width: 600px;
+            height: 600px;
+            left: 20%;
+          }
         }
       }
     }
     .info {
       padding-top: 100px;
+      @include mq(1024) {
+        padding-left: 100px;
+      }
+      @include mq(768) {
+        padding-left: 5%;
+        padding-top: 20px;
+      }
       .top {
         display: grid;
         grid-template-columns: 320px 1fr;
         gap: 2em;
         align-items: center;
+        @include mq(768) {
+          display: flex;
+          flex-direction: column;
+        }
         .logo-part {
           position: relative;
           &::before {
@@ -102,7 +154,9 @@
           width: 320px;
           height: 320px;
           scale: 1.02;
-          transform: translateX(-10%);
+          @include mq(1024, min) {
+            transform: translateX(-10%);
+          }
           img {
             width: 100%;
             height: 100%;
@@ -121,6 +175,12 @@
           box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.328) inset;
           p {
             font-size: 1.3rem;
+            @include mq(550) {
+              font-size: 1rem;
+            }
+          }
+          @include mq(420) {
+            padding: 1em 2em;
           }
           position: relative;
           .talshape {
@@ -183,6 +243,12 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         padding: 3em 0;
+
+        @include mq(768) {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+        }
         gap: 2em;
         .btn-ext {
           background: var(--accent);
@@ -200,12 +266,21 @@
           gap: 2em;
           white-space: nowrap;
           justify-content: space-between;
+          @include mq(550) {
+            font-size: 1rem;
+          }
+          @include mq(350) {
+            width: 100%;
+            gap: 1em;
+          }
         }
         .l {
+          width: 100%;
           .info-list {
             display: flex;
             flex-direction: column;
             gap: 1em;
+            width: 100%;
 
             .info {
               width: 250px;
@@ -214,6 +289,10 @@
               padding: 0.85em 1em;
               border: 2px solid var(--accent);
               position: relative;
+
+              @include mq(768) {
+                width: 100%;
+              }
               &::before {
                 content: "";
                 position: absolute;
@@ -247,6 +326,9 @@
               &:nth-of-type(3) {
                 transform: translateX(10%);
               }
+              @include mq(768) {
+                transform: none !important;
+              }
             }
           }
 
@@ -261,12 +343,16 @@
         }
 
         .r {
+          @include mq(768) {
+            width: 100%;
+          }
           .ytembed {
             background: black;
             border: 4px solid #373737;
             // height: 300px;
             width: 100%;
             aspect-ratio: 16/9;
+            height: auto;
           }
           .vids {
             position: relative;
@@ -298,19 +384,48 @@
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            @include mq(350) {
+              flex-direction: column;
+            }
             .contacts {
               display: flex;
               gap: 1em;
               padding: 0.5em 0;
+
               a {
                 width: 70px;
                 height: 70px;
                 padding: 1em;
                 background: var(--accent);
+                @include mq(550) {
+                  width: 60px;
+                  height: 60px;
+                  padding: 0.5em;
+                }
+                @include mq(350) {
+                  width: 100%;
+                }
                 svg {
                   width: 100%;
                   height: 100%;
                   color: black;
+                }
+              }
+            }
+            @include mq(350) {
+              .external {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5em;
+                .btn-ext {
+                  display: flex;
+                  flex-direction: column;
+                  border-radius: 0 2em;
+                  margin: 0;
+                  svg {
+                    width: 50px;
+                    height: 50px;
+                  }
                 }
               }
             }

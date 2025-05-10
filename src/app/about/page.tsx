@@ -115,7 +115,7 @@ export default function page({}: Props) {
         </div>
       </section>
       <section id="request">
-        <div className="bot">a</div>
+        <div className="bot"></div>
         <div className="confine">
           <div className="l">
             <img src="/g/requst.png" alt="" />

@@ -1,3 +1,4 @@
+@use "mixins" as *;
 #p_contacts {
   #cont-load {
     position: fixed;
@@ -67,6 +68,10 @@
         z-index: 1;
         animation: flomp 1s infinite ease-in alternate-reverse;
 
+        @include mq(550) {
+          width: 22px;
+          height: 22px;
+        }
         @keyframes flomp {
           from {
             left: -5%;
@@ -97,6 +102,10 @@
         rotate: -45deg;
         animation: flomp2 1s infinite ease-in alternate-reverse;
         position: relative;
+        @include mq(550) {
+          width: 22px;
+          height: 22px;
+        }
         @keyframes flomp2 {
           from {
             right: -5%;
@@ -127,6 +136,9 @@
         border-radius: 5em;
         box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.465) inset;
         text-shadow: 0px 0px 4px #312d36;
+        @include mq(550) {
+          font-size: 2rem;
+        }
       }
     }
   }
@@ -153,16 +165,29 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1em;
+        @include mq(550) {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      @include mq(550) {
+        padding: 1.5em 2em;
       }
       .i {
         // margin: 1em 0;
         margin-bottom: 2em;
+        @include mq(550) {
+          margin-bottom: 1em;
+        }
         label {
           display: block;
           font-size: 1.6rem;
           font-family: var(--fontH);
           width: 100%;
           margin: 0.25em 0;
+          @include mq(420) {
+            font-size: 1.2rem;
+          }
         }
         input,
         textarea {
@@ -178,6 +203,9 @@
           border-radius: 0 1em 1em 0;
           &::placeholder {
             color: rgba(255, 255, 255, 0.37);
+          }
+          @include mq(420) {
+            font-size: 1rem;
           }
         }
         textarea {
@@ -216,6 +244,13 @@
         img {
           height: 30px;
         }
+        @include mq(550) {
+          img {
+            max-width: 40%;
+            height: auto;
+            object-fit: contain;
+          }
+        }
       }
 
       .act {
@@ -236,11 +271,21 @@
           box-shadow: 0px 0px 14px black;
           padding: 0.5em 1em;
           border-radius: 3em;
+          @include mq(550) {
+            display: none;
+          }
+        }
+        @include mq(550) {
+          justify-content: center;
         }
         .btn-main {
           border-radius: 0 2em 2em 0;
           font-size: 2rem;
           background: white;
+          @include mq(550) {
+            font-size: 1.5rem;
+            border-radius: 1em;
+          }
           color: #221e23;
         }
       }
@@ -256,6 +301,10 @@
       width: 100%;
       height: 100%;
       margin-bottom: -5px;
+      @include mq(550) {
+        object-fit: cover;
+        height: 300px;
+      }
     }
   }
 }

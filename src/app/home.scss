@@ -1,3 +1,4 @@
+@use "mixins" as *;
 #p_home {
   z-index: 1;
   position: relative;
@@ -8,6 +9,16 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
+    @include mq(1024) {
+      height: auto;
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    @include mq(420) {
+      aspect-ratio: 3/4;
+    }
     .current {
       width: 100%;
       height: 100%;
@@ -31,19 +42,42 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
+      @include mq(768) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @include mq(550) {
+        padding: 1em;
+      }
       .data {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         padding: 1em;
+        width: 100%;
         h2 {
           font-size: 6em;
           text-shadow: 0px 0px 14px black;
+          @include mq(1440) {
+            font-size: 4rem;
+          }
+          @include mq(1024) {
+            font-size: clamp(0.9rem, 5vw, 2rem);
+            margin: 0.5em 0;
+          }
         }
 
         .btn-main {
           font-size: 2rem;
+          @include mq(1440) {
+            font-size: 1.5rem;
+          }
+          @include mq(1024) {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+          }
           // width: auto;
           padding: 0.2em 2em;
           display: flex;
@@ -55,6 +89,9 @@
         display: flex;
         gap: 2em;
         align-items: center;
+        @include mq(550) {
+          gap: 1.25em;
+        }
         .p {
           width: 30px;
           height: 30px;
@@ -63,13 +100,15 @@
 
           transition: all 500ms var(--es1);
 
+          @include mq(550) {
+            width: 20px;
+            height: 20px;
+          }
           &:hover {
             background: #ffffff;
           }
           &.act {
             background: #ffffff;
-            width: 32px;
-            height: 32px;
             // margin: 0 1em;
             outline: 2px solid white;
             outline-offset: 3px;
@@ -114,11 +153,29 @@
       opacity: 0.4;
     }
     height: 900px;
+    @include mq(768) {
+      height: 500px;
+    }
+    @include mq(420) {
+      height: 350px;
+    }
     .confine {
       display: grid;
       grid-template-columns: 300px 1fr 300px;
       height: 100%;
       max-width: min(1440px, 90%);
+      @include mq(1280) {
+        grid-template-columns: 150px 1fr 150px;
+      }
+      @include mq(550) {
+        grid-template-columns: 80px 1fr 80px;
+      }
+      @include mq(420) {
+        max-width: 100%;
+      }
+      @include mq(380) {
+        grid-template-columns: 40px 1fr 40px;
+      }
 
       .content {
         display: flex;
@@ -128,11 +185,32 @@
         img {
           max-width: 350px;
           margin-bottom: 2em;
+
+          @include mq(1280) {
+            max-width: 250px;
+          }
+
+          @include mq(768) {
+            max-width: 150px;
+          }
+          @include mq(550) {
+            max-width: 60%;
+          }
         }
         p {
           max-width: 80%;
           text-align: center;
           font-size: 1.4rem;
+          @include mq(1280) {
+            font-size: 1.2rem;
+          }
+
+          @include mq(768) {
+            font-size: 1rem;
+          }
+          @include mq(420) {
+            font-size: 0.8rem;
+          }
           span {
             font-weight: bold;
           }
@@ -167,6 +245,18 @@
       z-index: -2;
       filter: blur(80px);
       opacity: 0.1;
+      user-select: none;
+      pointer-events: none;
+      @include mq(768) {
+        filter: blur(60px);
+        top: -10%;
+        opacity: 0.2;
+      }
+      @include mq(420) {
+        opacity: 0.3;
+        top: -5%;
+        filter: blur(40px);
+      }
     }
     .wrapper {
       display: flex;
@@ -174,9 +264,16 @@
       // overflow: scroll;
       gap: 4em;
 
+      @include mq(550) {
+        padding: 80px 0;
+        gap: 3em;
+      }
       .scroller {
         display: flex;
         gap: 4em;
+        @include mq(550) {
+          gap: 3em;
+        }
         .tc {
           --accent: #d8ffff;
           --accent: #955673;
@@ -186,6 +283,10 @@
             max-width: 80%;
             margin: 0 auto;
             margin-top: 50px;
+            @include mq(768) {
+              margin-top: 25px;
+              max-width: 95%;
+            }
             h2 {
               border-radius: 2em;
               padding: 0.35em 1em;
@@ -195,12 +296,27 @@
               color: white;
               border-bottom: 1px solid var(--accent);
               // filter: drop-shadow(0px 4px 4px white);
+              @include mq(768) {
+                font-size: clamp(0.6rem, 3vw, 2rem);
+                white-space: nowrap;
+              }
             }
           }
           .art-part {
             width: 410px;
             height: 410px;
-
+            @include mq(1024) {
+              width: 350px;
+              height: 350px;
+            }
+            @include mq(768) {
+              width: 250px;
+              height: 250px;
+            }
+            @include mq(550) {
+              width: 150px;
+              height: 150px;
+            }
             position: relative;
             &::before {
               content: "";
@@ -216,6 +332,10 @@
               z-index: -30;
               background: var(--accent);
               animation: speen 25s infinite linear forwards;
+
+              @include mq(550) {
+                outline-width: thin;
+              }
             }
 
             .wings {
@@ -233,11 +353,24 @@
                   fill: var(--accent);
                 }
               }
+
+              @include mq(768) {
+                opacity: 1;
+                bottom: -20%;
+                max-width: 30%;
+              }
+              @include mq(550) {
+                bottom: -40%;
+                rotate: -30deg;
+              }
               &.r {
                 left: unset;
                 right: 0%;
                 rotate: 20deg;
                 scale: -1 1;
+                @include mq(550) {
+                  rotate: 30deg;
+                }
               }
             }
             &::after {
@@ -250,6 +383,11 @@
               outline: 2px solid rgba(255, 255, 255, 0.184);
               outline-offset: -40px;
               transition: all 500ms var(--es1);
+              @include mq(550) {
+                scale: 1.8;
+                outline-width: 1px;
+                opacity: 0.4;
+              }
             }
 
             .pfp {
@@ -295,6 +433,9 @@
   #about-us {
     margin: 150px 0;
     padding-bottom: 100px;
+    @include mq(550) {
+      margin: 50px 0;
+    }
     .confine {
       display: grid;
       grid-template-columns: 500px 1fr 500px;
@@ -302,17 +443,37 @@
       margin: 0 auto;
       align-items: center;
       gap: 3em;
+      position: relative;
+      @include mq(1600) {
+        grid-template-columns: 300px 1fr 300px;
+      }
+      @include mq(1440) {
+        gap: 50px;
+        grid-template-columns: 200px 1fr 200px;
+      }
+      @include mq(1024) {
+        grid-template-columns: 100px 1fr 100px;
+      }
+      @include mq(550) {
+        display: flex;
+      }
       .c {
         position: relative;
 
         .aut {
           top: -10%;
           position: absolute;
+          @include mq(1024) {
+            max-width: 50%;
+          }
         }
         .aub {
           position: absolute;
           right: 0%;
           bottom: -10%;
+          @include mq(1024) {
+            max-width: 50%;
+          }
         }
         .panel {
           background: url("/b/paper.png"), #100d11;
@@ -324,9 +485,25 @@
           border: 1px solid white;
           border-radius: 400px;
 
+          @include mq(1440) {
+            border-radius: 150px;
+          }
+          @include mq(420) {
+            border-radius: 50px;
+          }
+
           box-shadow: 0px 0px 150px rgba(255, 255, 255, 0.21) inset;
           h2 {
             font-size: 3.4rem;
+            @include mq(1024) {
+              font-size: 2.5rem;
+            }
+            @include mq(768) {
+              font-size: clamp(2rem, 5vw, 2.5rem);
+            }
+            @include mq(550) {
+              margin-bottom: 1em;
+            }
           }
           p {
             font-size: 1.3rem;
@@ -334,6 +511,12 @@
             margin: 0 auto;
             text-align: center;
             margin-bottom: 2em;
+            @include mq(1024) {
+              font-size: 1.2rem;
+            }
+            @include mq(550) {
+              font-size: 1rem;
+            }
             strong {
               font-weight: bold;
             }
@@ -343,6 +526,9 @@
             align-items: center;
             display: flex;
             gap: 1em;
+            @include mq(1024) {
+              font-size: 1rem;
+            }
             svg {
               position: relative;
             }
@@ -354,7 +540,15 @@
         transform: translateX(-10%);
         width: 100%;
         height: 100%;
-
+        @include mq(1600) {
+          transform: translateX(-100%);
+          z-index: -1;
+        }
+        @include mq(550) {
+          position: absolute;
+          top: 0%;
+          left: 0%;
+        }
         &::before {
           content: "";
           position: absolute;
@@ -366,6 +560,10 @@
           z-index: -20;
           height: 500px;
           scale: 1.5;
+          @include mq(1024) {
+            scale: 1;
+            left: -150%;
+          }
         }
         .art {
           width: 100%;
@@ -377,10 +575,24 @@
           height: 800px;
           width: 800px;
           animation: hovering 3s infinite ease-in-out alternate-reverse;
+          @include mq(1024) {
+            height: 400px;
+            width: 400px;
+            top: 0%;
+          }
         }
       }
       .ra {
         transform: translateX(10%);
+        @include mq(1600) {
+          transform: translateX(100%);
+          z-index: -1;
+        }
+        @include mq(550) {
+          position: absolute;
+          top: 0%;
+        }
+
         &::before {
           content: "";
           position: absolute;
@@ -392,6 +604,16 @@
           width: 500px;
           height: 500px;
           scale: 1.5;
+          @include mq(1024) {
+            scale: 1;
+            right: -150%;
+          }
+          @include mq(550) {
+            top: 0%;
+            bottom: unset;
+            right: unset;
+            left: unset;
+          }
         }
         position: relative;
         width: 100%;
@@ -407,6 +629,11 @@
           height: 800px;
           width: 800px;
           animation: hovering 3s infinite ease-in-out alternate;
+          @include mq(1024) {
+            height: 400px;
+            width: 400px;
+            top: 0%;
+          }
         }
       }
     }

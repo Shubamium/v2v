@@ -1,6 +1,8 @@
+@use "mixins" as *;
 #header {
   position: relative;
   z-index: 100;
+
   .side-l,
   .side-r {
     position: absolute;
@@ -45,6 +47,15 @@
     z-index: 15;
     height: 120px;
     filter: drop-shadow(0px 0px 10px black);
+
+    @include mq(550) {
+      height: 100px;
+    }
+    @include mq(420) {
+      height: 80px;
+      width: 180px;
+    }
+
     .wrapper {
       // display: none;
       width: 100%;
@@ -96,6 +107,9 @@
   // align-items: center;
   justify-content: center;
   filter: drop-shadow(0px 20px 25px rgba(21, 11, 24, 0.89));
+  @include mq(1440) {
+    justify-content: flex-end;
+  }
   #main-nav {
     display: flex;
     gap: 0.45em;
@@ -104,11 +118,16 @@
       font-size: 1.4rem;
       padding: 0.8em 1.1em;
       background: rgba(23, 22, 27, 0.656);
-      box-shadow: inset 0px 0px 20px 5px #7a7189b6;
+      box-shadow:
+        inset 0px 0px 20px 5px #7a7189b6,
+        0px 0px 5px black;
       transition: all 150ms var(--es1);
       scale: 1;
       font-family: var(--fontH);
       text-shadow: 0px -1px 8px rgba(0, 0, 0, 0.344);
+      @include mq(1280) {
+        font-size: 1.2rem;
+      }
       &:active {
         // transform: translateY(10px);
       }
@@ -155,9 +174,79 @@
         }
       }
     }
+
+    @include mq(1024) {
+      display: none;
+    }
+  }
+
+  .fs-btn {
+    background: rgba(23, 22, 27, 0.656);
+    padding: 1em 1.25em;
+    color: white;
+    // box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.295) inset;
+    box-shadow:
+      inset 0px 0px 20px 5px #7a7189b6,
+      0px 0px 15px black;
+
+    @include mq(1024, min) {
+      display: none;
+    }
+    svg {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
+#fs-nav {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.808);
+  backdrop-filter: blur(10px);
+  z-index: 120;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0px 0px 50px rgba(47, 30, 70, 0.466) inset;
+  gap: 1em;
+  .btn-mnav {
+    // background: white;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding: 0.25em 1em;
+    // box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.466) inset;
+    font-size: clamp(1rem, 8vw, 2rem);
+    background: rgb(255, 255, 255);
+    color: #282429;
+    // background-color: #282429;
+    font-family: var(--fontH);
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  transition: all 500ms var(--es1);
+
+  svg {
+    // transform: translateY(15%);
+  }
+  &.act {
+    // transform: translateY(0%);
+  }
+  &.closed {
+    // transform: translateY(100%) scaleX(0%);
+    opacity: 0;
+    // filter: blur(4px);
+    user-select: none;
+    pointer-events: none;
+  }
+}
 #side-contact {
   display: flex;
   flex-direction: column;
@@ -167,6 +256,9 @@
   z-index: 100;
   padding: 1em;
   gap: 0.5em;
+  @include mq(420) {
+    display: none;
+  }
   &::before,
   &::after {
     content: "";

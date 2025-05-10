@@ -2,19 +2,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useScroll, motion, useTransform } from "motion/react";
 import { getRandomArts } from "../util/utility";
+import { useMediaQuery } from "react-responsive";
 type Props = {};
 
 export default function HomeAbout({}: Props) {
   const contRef = useRef(null);
   const progress = useScroll({
-    axis: "y",
     target: contRef,
     offset: ["start end", "end start"],
     // container: contRef
   });
 
-  const lP = useTransform(progress.scrollYProgress, [0, 1], [-200, 100]);
-  const rP = useTransform(progress.scrollYProgress, [0, 1], [100, -200]);
+  const small = useMediaQuery({
+    query: "(max-width:  550px)",
+  });
+  const lP = useTransform(
+    progress.scrollYProgress,
+    [0, 1],
+    small ? [-100, 50] : [-200, -100]
+  );
+  const rP = useTransform(
+    progress.scrollYProgress,
+    [0, 1],
+    small ? [50, -100] : [100, -200]
+  );
 
   const sideL = useTransform(progress.scrollYProgress, [0, 1], [-100, -300]);
   const sideR = useTransform(progress.scrollYProgress, [0, 1], [100, 300]);
@@ -26,6 +37,7 @@ export default function HomeAbout({}: Props) {
     setArtL(arts[0]);
     setArtR(arts[1]);
   }, []);
+
   return (
     <section id="about" ref={contRef}>
       <motion.div style={{ x: sideL }} className="side-l"></motion.div>

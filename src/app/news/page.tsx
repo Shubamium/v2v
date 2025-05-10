@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./news.scss";
-import { FaFilter } from "react-icons/fa";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { fetchData, urlFor } from "../services/db";
@@ -36,6 +35,7 @@ export default async function page({ searchParams }: Props) {
 			slug,
 			tags,
 			cat,
+			ex,
 			d,
 			'cat': cat->slug.current,
 			'catName': cat->name
