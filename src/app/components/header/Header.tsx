@@ -7,16 +7,11 @@ import "./header.scss";
 import { FaDiscord, FaEnvelope, FaNewspaper, FaYoutube } from "react-icons/fa";
 import { FaHouse, FaXTwitter } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
-import {
-  GiAngelWings,
-  GiFairyWings,
-  GiHamburgerMenu,
-  GiHeartWings,
-} from "react-icons/gi";
-import { CgArrowRightO, CgClose, CgList } from "react-icons/cg";
-import { AnimatePresence, stagger, useAnimate } from "motion/react";
-import { BsArrowRight } from "react-icons/bs";
+import { GiHamburgerMenu, GiHeartWings } from "react-icons/gi";
+import { CgArrowRightO, CgList } from "react-icons/cg";
+import { stagger, useAnimate } from "motion/react";
 import { BiShoppingBag } from "react-icons/bi";
+
 export default function Header({}: Props) {
   const path = usePathname();
   const [fsNav, setFsNav] = useState(false);
@@ -26,7 +21,7 @@ export default function Header({}: Props) {
     await animate(
       ".btn-mnav",
       { scaleX: [0, 1], x: [500, 0] },
-      { duration: 0.05, delay: stagger(0.1) }
+      { duration: 0.05, delay: 0.05 || stagger(0.1) }
     );
   };
 
@@ -34,7 +29,7 @@ export default function Header({}: Props) {
     await animate(
       ".btn-mnav",
       { scaleX: 1, x: 500 },
-      { duration: 0.05, delay: stagger(0.05, { from: "last" }) }
+      { duration: 0.05, delay: 0.05 || stagger(0.05, { from: "last" }) }
     );
   };
   useEffect(() => {

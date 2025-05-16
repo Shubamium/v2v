@@ -36,14 +36,20 @@ export default async function page({ params }: Props) {
           {/* <img src="/g/milzfb.gif" alt="" className="main ni" /> */}
           <video
             className="main ni"
-            src={td.arts?.vid + ""}
             autoPlay={true}
             // poster={
             //   td.arts.fb && urlFor(td.arts.fb).width(900).height(900).url()
             // }
             muted
             loop
-          />
+          >
+            <source src={td.arts?.vid + ""} />
+            <img
+              src={td.arts.fb && urlFor(td.arts.st).height(1300).url()}
+              // className="main ni"
+              alt=""
+            />
+          </video>
 
           <img
             src={td.arts.fb && urlFor(td.arts.st).height(1300).url()}

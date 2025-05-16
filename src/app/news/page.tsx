@@ -5,6 +5,7 @@ import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { fetchData, urlFor } from "../services/db";
 import CategorySelect from "./CategorySelect";
+import NewsButton from "./NewsButton";
 type Props = {
   searchParams: Promise<{
     cat: string;
@@ -73,40 +74,7 @@ export default async function page({ searchParams }: Props) {
 
       <section id="nl" className="confine">
         {data.map((n: any) => {
-          return (
-            <div className="btn n" key={n._id}>
-              <div className="l"></div>
-              <div className="r"></div>
-              <div className="np">
-                <div className="date">
-                  <p>{new Date(n.d).toDateString()}</p>
-                </div>
-                <div className="info">
-                  <img
-                    src={n.bl && urlFor(n.bl).url()}
-                    alt=""
-                    className="banner"
-                  />
-                  <div className="grad"></div>
-                  <h2 className="news">{n.t}</h2>
-                  <p className="excerpt">{n.ex}</p>
-
-                  <div className="tags">
-                    <p>{n.catName}</p>
-                    {n.tags?.map((n: any) => {
-                      return <p key={n}>{n}</p>;
-                    })}
-                  </div>
-                </div>
-              </div>
-              <div className="nf">
-                <img src="/d/nshape.svg" alt="" />
-                <Link href={`/news/read/${n.slug.current}`}>
-                  READ MORE <BsArrowRight />
-                </Link>
-              </div>
-            </div>
-          );
+          return <NewsButton n={n} key={n._id}></NewsButton>;
         })}
         {/* <div className="btn n">
           <div className="l"></div>

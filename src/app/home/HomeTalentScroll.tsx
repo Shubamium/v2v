@@ -9,15 +9,20 @@ import { useRouter } from "next/navigation";
 import React, { CSSProperties, useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import { urlFor } from "../services/db";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {};
 
 export function HomeTalentScroll({ tl }: any) {
-  const [ref, bounds] = useMeasure({ debounce: 1000 });
+  const [ref, bounds] = useMeasure({ debounce: 1000, scroll: false });
   const x = useMotionValue(0);
   const [ctr, setCTR] = useState<AnimationPlaybackControlsWithThen | null>(
     null
   );
+
+  const small = useMediaQuery({
+    query: "(max-width:  550px)",
+  });
   useEffect(() => {
     const target = -bounds.width;
     const dur = 4 * 3;
@@ -54,7 +59,13 @@ export function HomeTalentScroll({ tl }: any) {
                 key={t._id}
               >
                 <div className="art-part">
-                  <img src={urlFor(t.arts.pfp).url()} alt="" className="pfp" />
+                  <img
+                    src={urlFor(t.arts.pfp)
+                      .height(small ? 400 : 800)
+                      .url()}
+                    alt=""
+                    className="pfp"
+                  />
                   <svg
                     width="109"
                     height="104"
@@ -348,7 +359,7 @@ export function HomeTalentScroll({ tl }: any) {
             );
           })}
         </div>
-        <div className="scroller">
+        {/* <div className="scroller">
           {tl.map((t: any) => {
             return (
               <div
@@ -413,7 +424,7 @@ export function HomeTalentScroll({ tl }: any) {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </motion.div>
     </div>
   );

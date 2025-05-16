@@ -6,6 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import HomeAboutUs from "./home/HomeAboutUs";
 import { fetchData } from "./services/db";
+import { getRandomArts } from "./util/utility";
 
 export default async function Home() {
   const gd = await fetchData<any>(`
@@ -26,7 +27,7 @@ export default async function Home() {
   return (
     <main id="p_home">
       <HomeCarousel slide={gd.hs ?? []} />
-      <HomeAbout />
+      <HomeAbout arts={getRandomArts()} />
       <HomeTalentScroll tl={td} />
       <HomeAboutUs />
     </main>

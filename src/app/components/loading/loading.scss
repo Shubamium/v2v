@@ -1,3 +1,4 @@
+@use "mixins" as *;
 #loading {
   position: fixed;
   height: 100%;
@@ -43,7 +44,8 @@
       var(--purp)
     );
     background-repeat: repeat-x;
-    animation: lineload 2s infinite linear alternate,
+    animation:
+      lineload 2s infinite linear alternate,
       barload 2400ms steps(random(10)) forwards;
 
     @keyframes lineload {
@@ -73,6 +75,11 @@
     width: 350px;
     filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.489));
     transition: all 500ms ease;
+
+    @include mq(550) {
+      width: 60%;
+      margin: 0 auto;
+    }
   }
   .note {
     font-size: 1rem;
@@ -108,12 +115,12 @@
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 15px solid #ffffff;
+    border: 55px solid #ffffff;
     scale: 0;
     opacity: 0;
 
     animation: pulse 1s ease-out infinite;
-    filter: drop-shadow(0px 0px 12px white);
+    // filter: drop-shadow(0px 0px 12px white);
     z-index: -10;
     @keyframes pulse {
       from {
@@ -128,7 +135,7 @@
         border-color: var(--gre);
       }
       to {
-        scale: 8;
+        scale: 4;
         border-color: var(--blu);
         border-width: 2px;
         opacity: 0;

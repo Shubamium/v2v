@@ -26,6 +26,8 @@ body {
   font-family: var(--fontP);
   width: 100vw;
   color: white;
+  overflow-x: clip;
+  position: relative;
 
   &:has(#loading:not(.done)) {
     height: 100vh;

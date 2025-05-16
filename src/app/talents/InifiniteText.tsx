@@ -11,7 +11,7 @@ function InifiniteText({}: Props) {
   const x1 = useMotionValue(0);
   const x3 = useMotionValue(0);
 
-  const [ref, bounds] = useMeasure();
+  const [ref, bounds] = useMeasure({ debounce: 1000, scroll: false });
   useEffect(() => {
     animate(x, [0, -bounds.width], {
       duration: 31 * 15,

@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 type Props = {};
 
 export default function HomeAboutUs({}: Props) {
-  const [auArt, setAuArts] = useState<string[]>(["/awdwa.png", "awdadad.png"]);
+  const [auArt, setAuArts] = useState<string[]>([]);
   useEffect(() => {
     setAuArts(getRandomArts());
   }, []);

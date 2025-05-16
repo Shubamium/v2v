@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 import { urlFor } from "../services/db";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {};
 
@@ -22,15 +23,49 @@ type Props = {};
 //     img: "https://picsum.photos/id/50/1920/1080",
 //   },
 // ];
-
+const desktopVariant = {
+  animate: {
+    clipPath: "polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%)",
+  },
+  initial: {
+    clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
+  },
+  exit: {
+    clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
+  },
+  transition: {
+    duration: 0.6,
+    ease: "easeInOut",
+  },
+};
+const mobileVariant = {
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+  initial: {
+    opacity: 0,
+    x: 1000,
+  },
+  exit: {
+    opacity: 0,
+    x: 1000,
+  },
+  transition: {
+    duration: 0.6,
+    ease: "easeInOut",
+  },
+};
 export default function HomeCarousel({ slide }: any) {
   const [page, setPage] = useState(0);
 
   const data = slide;
-
+  const small = useMediaQuery({
+    query: "(max-width:  550px)",
+  });
   useEffect(() => {
     const loadImages = () => {
-      data.forEach((item:any) => {
+      data.forEach((item: any) => {
         const img = new Image();
         img.src = item.img;
       });
@@ -60,25 +95,52 @@ export default function HomeCarousel({ slide }: any) {
       return p - 1;
     });
   };
+
+  const desktopVariant = {
+    animate: {
+      clipPath: "polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%)",
+    },
+    initial: {
+      clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
+    },
+    exit: {
+      clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
+    },
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+    },
+  };
+  const mobileVariant = {
+    animate: {
+      opacity: 1,
+      x: 0,
+    },
+    initial: {
+      opacity: 0,
+      x: 500,
+    },
+    exit: {
+      opacity: 0,
+      x: 500,
+    },
+    transition: {
+      duration: 0.6,
+      ease: "linear",
+    },
+  };
   return (
     <section id="hero-carousel">
       <AnimatePresence mode="wait">
         <motion.img
-          animate={{
-            clipPath: "polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%)",
-          }}
-          initial={{
-            clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
-          }}
-          exit={{
-            clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
-          }}
-          transition={{
-            duration: 0.6,
-            ease: "easeInOut",
-          }}
+          variants={small ? mobileVariant : desktopVariant}
+          initial="initial"
+          animate="animate"
+          exit="exit"
           key={data[page]._key + "img"}
-          src={urlFor(data[page].i).height(1080).url()}
+          src={urlFor(data[page].i)
+            .height(small ? 500 : 1380)
+            .url()}
           alt=""
           className="current"
         />
@@ -104,9 +166,11 @@ export default function HomeCarousel({ slide }: any) {
             key={data[page].t}
           >
             <h2>{data[page].t}</h2>
-						{data[page].url &&  <a target="_blank" href={data[page].url} className="btn btn-main">
-              Check it out here!
-            </a>}
+            {data[page].url && (
+              <a target="_blank" href={data[page].url} className="btn btn-main">
+                Check it out here!
+              </a>
+            )}
           </motion.div>
         </AnimatePresence>
         <div className="pager">
@@ -117,7 +181,7 @@ export default function HomeCarousel({ slide }: any) {
                 onClick={() => {
                   setPage(index);
                 }}
-                key={d._key + 'pager' + index}
+                key={d._key + "pager" + index}
               ></div>
             );
           })}
