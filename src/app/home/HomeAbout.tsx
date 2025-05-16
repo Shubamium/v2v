@@ -6,8 +6,8 @@ import {
   useTransform,
   useReducedMotion,
 } from "motion/react";
-// import { getRandomArts } from "../util/utility";
 import { useMediaQuery } from "react-responsive";
+import { getRandomArts } from "../util/utility";
 type Props = {
   arts: string[];
 };
@@ -41,7 +41,7 @@ export default function HomeAbout({ arts }: Props) {
   const [artL, setArtL] = useState("/b/zigs.png");
   const [artR, setArtR] = useState("/b/zigs.png");
   useEffect(() => {
-    // const arts = arts();
+    const arts = getRandomArts();
     setArtL(arts[0]);
     setArtR(arts[1]);
   }, []);

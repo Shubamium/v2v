@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 type Props = {};
 
@@ -10,9 +10,11 @@ export default function Loading({}: Props) {
   const [load, setLoad] = useState(false);
   const [safeToRemove, setSafeToRemove] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setLoad(true), 1400);
-    setTimeout(() => setSafeToRemove(true), 3000);
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      window.setTimeout(() => setLoad(true), 2000);
+      window.setTimeout(() => setSafeToRemove(true), 3000);
+    }
   }, []);
   return (
     !safeToRemove && (

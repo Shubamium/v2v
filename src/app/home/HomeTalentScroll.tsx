@@ -61,9 +61,10 @@ export function HomeTalentScroll({ tl }: any) {
                 <div className="art-part">
                   <img
                     src={urlFor(t.arts.pfp)
-                      .height(small ? 400 : 800)
+                      .height(small ? 300 : 800)
                       .url()}
                     alt=""
+                    loading="lazy"
                     className="pfp"
                   />
                   <svg

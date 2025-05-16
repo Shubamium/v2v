@@ -1,3 +1,4 @@
+"use client";
 export const artList = [
   "/g/milzstand.png",
   "/g/char2.png",

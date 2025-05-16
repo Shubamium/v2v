@@ -23,6 +23,7 @@ type Props = {};
 //     img: "https://picsum.photos/id/50/1920/1080",
 //   },
 // ];
+
 const desktopVariant = {
   animate: {
     clipPath: "polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%)",
@@ -34,29 +35,26 @@ const desktopVariant = {
     clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
   },
   transition: {
-    duration: 0.6,
+    duration: 1,
     ease: "easeInOut",
   },
 };
 const mobileVariant = {
   animate: {
     opacity: 1,
-    x: 0,
   },
   initial: {
     opacity: 0,
-    x: 1000,
   },
   exit: {
     opacity: 0,
-    x: 1000,
   },
   transition: {
     duration: 0.6,
-    ease: "easeInOut",
+    ease: "linear",
   },
 };
-export default function HomeCarousel({ slide }: any) {
+export function HomeCarousel({ slide }: any) {
   const [page, setPage] = useState(0);
 
   const data = slide;
@@ -96,39 +94,6 @@ export default function HomeCarousel({ slide }: any) {
     });
   };
 
-  const desktopVariant = {
-    animate: {
-      clipPath: "polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%)",
-    },
-    initial: {
-      clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
-    },
-    exit: {
-      clipPath: "polygon(0 0, 0 0, 100% 100%, 100% 100%, 100% 100%, 0 0)",
-    },
-    transition: {
-      duration: 1,
-      ease: "easeInOut",
-    },
-  };
-  const mobileVariant = {
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-    initial: {
-      opacity: 0,
-      x: 500,
-    },
-    exit: {
-      opacity: 0,
-      x: 500,
-    },
-    transition: {
-      duration: 0.6,
-      ease: "linear",
-    },
-  };
   return (
     <section id="hero-carousel">
       <AnimatePresence mode="wait">
@@ -139,7 +104,7 @@ export default function HomeCarousel({ slide }: any) {
           exit="exit"
           key={data[page]._key + "img"}
           src={urlFor(data[page].i)
-            .height(small ? 500 : 1380)
+            .height(small ? 400 : 1380)
             .url()}
           alt=""
           className="current"
@@ -190,3 +155,5 @@ export default function HomeCarousel({ slide }: any) {
     </section>
   );
 }
+
+export default React.memo(HomeCarousel);

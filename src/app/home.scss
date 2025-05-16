@@ -120,6 +120,10 @@
 
   #about {
     position: relative;
+
+    @include mq(550) {
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.596);
+    }
     .side-l {
       position: absolute;
       background: #312d36;
@@ -263,6 +267,9 @@
         top: -5%;
         filter: blur(40px);
       }
+      @include mq(550) {
+        display: none;
+      }
     }
     .wrapper {
       display: flex;
@@ -337,8 +344,15 @@
               outline-offset: 20px;
               z-index: -30;
               background: var(--accent);
-              animation: speen 25s infinite linear forwards;
-
+              animation: speenlong 7s infinite linear;
+              @keyframes speenlong {
+                from {
+                  rotate: 0turn;
+                }
+                to {
+                  rotate: 1turn;
+                }
+              }
               @include mq(550) {
                 outline-width: thin;
               }
@@ -368,6 +382,9 @@
               @include mq(550) {
                 bottom: -40%;
                 rotate: -30deg;
+              }
+              @include mq(550) {
+                display: none;
               }
               &.r {
                 left: unset;

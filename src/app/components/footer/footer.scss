@@ -14,9 +14,12 @@
     left: 0%;
     height: 300px;
     object-fit: cover;
-    filter: blur(100px);
+    filter: blur(50px);
     height: 100%;
     opacity: 0.2;
+    @include mq(550) {
+      display: none;
+    }
   }
 
   .tl {

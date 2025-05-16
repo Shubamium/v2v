@@ -4,6 +4,9 @@ import { Open_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { CSSProperties } from "react";
 import Loading from "./components/loading/Loading";
+import ReactLenis from "lenis/react";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 const gt = localFont({
   src: [
@@ -38,12 +41,17 @@ export default function RootLayout({
           } as CSSProperties
         }
       >
-        {/* <ReactLenis root> */}
         <Loading />
-        {/* <Header /> */}
-        {children}
-        {/* <Footer /> */}
-        {/* </ReactLenis> */}
+        <ReactLenis
+          root
+          options={{
+            duration: 2.5,
+          }}
+        >
+          <Header />
+          {children}
+          <Footer />
+        </ReactLenis>
       </body>
     </html>
   );
