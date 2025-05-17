@@ -53,7 +53,9 @@ export function HomeTalentScroll({ tl }: any) {
               <div
                 className="btn tc"
                 onClick={() => {
-                  router.push("/talent/" + t.slug.current);
+                  router.push("/talent/" + t.slug.current, {
+                    scroll: false,
+                  });
                 }}
                 style={{ "--accent": t.ca } as CSSProperties}
                 key={t._id}

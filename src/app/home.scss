@@ -662,3 +662,11 @@
     }
   }
 }
+
+body:has(#p_home) {
+  @include mq(550) {
+    #footer {
+      margin-top: 10px;
+    }
+  }
+}

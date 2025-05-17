@@ -19,6 +19,7 @@ export default async function page({ params }: Props) {
 			...,
 			arts{
 			...,
+			'ta':ta.asset ->url,
 			'vid': vid.asset->url
 			}
 		}
@@ -33,15 +34,26 @@ export default async function page({ params }: Props) {
         <div className="circt ni"></div>
         <div className="circb ni"></div>
         <div className="art">
-          {/* <img src="/g/milzfb.gif" alt="" className="main ni" /> */}
-          <video
+          {/* <img src={"/g/tr3.webp"} alt="" className="main ni" /> */}
+          <img
+            src={td.arts.fb && urlFor(td.arts.fb).height(1300).url()}
+            className="main ni shadow"
+          />
+          <picture className="main ni ">
+            <source srcSet={td.arts.ta} type="image/webp" />
+            {/* <source srcSet={"/g/kiyori2.webp"} type="image/webp" /> */}
+            <img src={td.arts.fb && urlFor(td.arts.fb).height(1300).url()} />
+          </picture>
+          {/* <video
             className="main ni"
             autoPlay={true}
             // poster={
             //   td.arts.fb && urlFor(td.arts.fb).width(900).height(900).url()
             // }
             muted
+            playsInline
             loop
+            controls={false}
           >
             <source src={td.arts?.vid + ""} />
             <img
@@ -49,13 +61,7 @@ export default async function page({ params }: Props) {
               // className="main ni"
               alt=""
             />
-          </video>
-
-          <img
-            src={td.arts.fb && urlFor(td.arts.st).height(1300).url()}
-            alt=""
-            className="main ni shadow"
-          />
+          </video> */}
         </div>
         <div className="info">
           <div className="top">

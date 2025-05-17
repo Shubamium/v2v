@@ -126,7 +126,10 @@ export default function page({}: Props) {
         </form>
       </section>
       <section id="ctban">
-        <img src="/d/ctf.png" alt="" />
+        <picture className="art">
+          <source srcSet="/g/mobilecontact.png" media="(max-width:550px)" />
+          <img src="/d/ctf.png" alt="" />
+        </picture>
       </section>
     </main>
   );

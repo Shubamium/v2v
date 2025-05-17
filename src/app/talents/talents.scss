@@ -15,7 +15,7 @@
 
   @include mq(1024) {
     // min-height: 2000px;
-    padding-bottom: 400px;
+    // padding-bottom: 400px;
   }
   #tal-list {
     .th {
@@ -81,46 +81,53 @@
             object-position: top;
           }
         }
-        &:hover {
-          transform: translateY(8%);
-          z-index: 100;
-          filter: brightness(110%);
-          scale: 1;
-          &::before {
-            opacity: 1;
-          }
-          .talart {
-            scale: 1.2;
-            animation: blur 0.5s ease-in;
-            @keyframes blur {
-              from {
-                filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746)) blur(0px)
-                  brightness(100%);
-              }
-              30% {
-                filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746)) blur(1px)
-                  brightness(120%);
-              }
-              to {
-                filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746)) blur(0px)
-                  brightness(100%);
+        @include mq(550) {
+          &:hover {
+            transform: translateY(8%);
+            z-index: 100;
+            filter: brightness(110%);
+            scale: 1;
+            &::before {
+              opacity: 1;
+            }
+            .talart {
+              scale: 1.05;
+              transform-origin: right;
+              @include mq(550, min) {
+                animation: blur 0.5s ease-in;
+                @keyframes blur {
+                  from {
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746))
+                      blur(0px) brightness(100%);
+                  }
+                  30% {
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746))
+                      blur(1px) brightness(120%);
+                  }
+                  to {
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746))
+                      blur(0px) brightness(100%);
+                  }
+                }
               }
             }
-          }
-          .logo {
-            animation: blur 0.5s ease-in;
-            @keyframes blur {
-              from {
-                filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746)) blur(0px)
-                  brightness(100%);
-              }
-              30% {
-                filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746)) blur(1px)
-                  brightness(120%);
-              }
-              to {
-                filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746)) blur(0px)
-                  brightness(100%);
+            .logo {
+              @include mq(550, min) {
+                animation: blur 0.5s ease-in;
+                @keyframes blur {
+                  from {
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746))
+                      blur(0px) brightness(100%);
+                  }
+                  30% {
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746))
+                      blur(1px) brightness(120%);
+                  }
+                  to {
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.746))
+                      blur(0px) brightness(100%);
+                  }
+                }
               }
             }
           }

@@ -1,6 +1,9 @@
 import "./home.scss";
 import { fetchData } from "./services/db";
-import HomeClient from "./HomeClient";
+import { HomeCarousel } from "./home/HomeCarousel";
+import HomeAbout from "./home/HomeAbout";
+import { HomeTalentScroll } from "./home/HomeTalentScroll";
+import HomeAboutUs from "./home/HomeAboutUs";
 
 export default async function Home() {
   const gd = await fetchData<any>(`
@@ -20,7 +23,10 @@ export default async function Home() {
 	}`);
   return (
     <main id="p_home">
-      <HomeClient gd={gd} td={td} />
+      <HomeCarousel slide={gd.hs ?? []} />
+      <HomeAbout arts={[]} />
+      <HomeTalentScroll tl={td} />
+      <HomeAboutUs />
     </main>
   );
 }

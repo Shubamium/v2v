@@ -41,13 +41,8 @@ export default function RootLayout({
           } as CSSProperties
         }
       >
-        <Loading />
-        <ReactLenis
-          root
-          options={{
-            duration: 2.5,
-          }}
-        >
+        <Loading isMain={true} />
+        <ReactLenis root>
           <Header />
           {children}
           <Footer />
