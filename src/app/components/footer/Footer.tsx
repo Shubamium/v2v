@@ -41,7 +41,10 @@ export default function Footer({}: Props) {
                 <Link href={"/news"} className="btn btn-minav">
                   News
                 </Link>
-                <Link href={"#"} className="btn btn-minav">
+                <Link
+                  href={"https://www.vir2alverse.store"}
+                  className="btn btn-minav"
+                >
                   Merch
                 </Link>
                 <Link href={"/contacts"} className="btn btn-minav">
@@ -51,13 +54,16 @@ export default function Footer({}: Props) {
             </div>
             <img src="/d/footer-circ.png" alt="" className="fc" />
             <div className="contact">
-              <a href="#" className="btn btn-ct">
+              <a href="https://x.com/Vir2alVerse" className="btn btn-ct">
                 <FaXTwitter />
               </a>
-              <a href="#" className="btn btn-ct">
+              <a
+                href="https://www.youtube.com/@Vir2alVerse"
+                className="btn btn-ct"
+              >
                 <FaDiscord />
               </a>
-              <a href="#" className="btn btn-ct">
+              <a href="https://discord.gg/Kuy73x2tZv" className="btn btn-ct">
                 <FaYoutube />
               </a>
             </div>
@@ -65,7 +71,7 @@ export default function Footer({}: Props) {
           <div className="r">
             <div className="top">
               <img src="/g/logo_w.png" alt="" className="logo" />
-              <p className="tagline">Mini About or Tagline / Slogan here</p>
+              <p className="tagline">From our universe to yours</p>
             </div>
             <div className="b">
               <p className="attribution">

@@ -12,12 +12,13 @@ export default function page({}: Props) {
         <div className="confine">
           <div className="l">
             <h2 className="tagline">
-              " WRITE A <br />
+              " FROM OUR <br />
               <span className="ol">
-                TAGLINE <br /> HERE AND
+                UNIVERSE
+                <br /> TO YOURS"
               </span>{" "}
               <br />
-              <span className="smoll"> MORE TAGLINE TEXT "</span>
+              {/* <span className="smoll"> MORE TAGLINE TEXT "</span> */}
             </h2>
             <img src="/g/chib2.png" alt="" className="chib" />
           </div>
@@ -69,8 +70,13 @@ export default function page({}: Props) {
               <img src="/g/chib1.png" alt="" className="chib" />
               <h2>A Healthy Environment</h2>
               <p>
-                It’s of the utmost importance that our talents are happy,
-                healthy, and feel completely supported by Vir2alVerse.
+                It is of the utmost importance that our talents are happy,
+                healthy, and feel supported by Vir2alVerse. As an agency, it is
+                our duty to make sure that our talents are able to achieve their
+                dreams without having to sacrifice their wellbeing. <br />{" "}
+                <br />
+                Talents work closely with management to assure that they are
+                taking care of themselves while they create excellent content!
               </p>
             </div>
             <div className="g">
@@ -80,7 +86,11 @@ export default function page({}: Props) {
                 We strive to constantly create high-quality content that
                 enthralls our audience. Our talents are bright and ambitious
                 creators who are dedicated to putting out the best work that
-                they can!”
+                they can.
+                <br />
+                <br />
+                If it's worth doing, it's worth doing excellently - this is what
+                all our talents believe in.
               </p>
             </div>
           </div>

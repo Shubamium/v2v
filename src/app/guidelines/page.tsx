@@ -13,6 +13,90 @@ export default function page({}: Props) {
             <h2>Guidelines</h2>
           </div>
           <p>
+            Vir2alVerse is extremely grateful for fans who wish to create
+            derivative works of our brand or talents. However, for the
+            protection of all involved, please carefully review our fanwork
+            guidelines below.
+          </p>
+          <h3>What is considered “derivative work?”</h3>
+          <ul>
+            <li>
+              Derivative works are defined as creations depicting characters,
+              illustrations, clipped content, music, or other material that
+              Vir2alVerse retains the rights to.
+            </li>
+            <li>
+              In order to be defined as derivative work, the piece must have
+              creative input that distinguishes it from official works owned by
+              Vir2alVerse, unless otherwise granted permission from Vir2alVerse.
+            </li>
+            <li>
+              Fans creating derivative works must agree that all content created
+              by Vir2alVerse belongs to Vir2alVerse, and ultimately exercises
+              ownership over the usage of derivative works.
+            </li>
+            <li>
+              These guidelines apply only to individuals and non-corporate
+              entities. For corporations who wish to create derivative work,
+              please contact us here.
+            </li>
+          </ul>
+          <h3>Clipping</h3>
+          <ul>
+            <li>Clipping of members-only content is strictly prohibited.</li>
+          </ul>
+          <h3>Fan Merchandise</h3>
+          <ul>
+            <li>
+              Please keep the sale of derivative works at a solely hobbyist
+              level. Vir2alVerse retains the right to determine what “hobbyist
+              level” entails depending on various factors such as sales,
+              popularity, or nature of the derivative work.
+            </li>
+
+            <li>Do not alter and resell official merchandise.</li>
+            <li>
+              Do not use official Vir2alVerse media to promote business or
+              commercial ventures unless permitted by Vir2alVerse.
+            </li>
+            <li>
+              Do not resell, alter, or otherwise reuse art commissioned by
+              Vir2alVerse in a commercial manner.
+            </li>
+            <li>
+              We reserve the right to request that the sale of fan merchandise
+              stops.
+            </li>
+          </ul>
+
+          <h3>Guidelines</h3>
+          <ul>
+            <li>
+              Refrain from creating derivative work of a talent that the talent
+              would find disagreeable.
+            </li>
+            <li>
+              Do not attempt to impersonate or falsely represent Vir2alVerse or
+              its members. Works that can be mistaken as official are
+              prohibited.
+            </li>
+            <li>
+              Refrain from creating works that damage the image of Vir2alVerse
+              or its members.
+            </li>
+            <li>
+              Do not create works that violate regulations of the platforms that
+              they are posted on, or violate local laws against depictions of
+              certain material in media.
+            </li>
+            <li>Do not create works that are socially unacceptable.</li>
+            <li>
+              Refrain from creating any derivative work that Vir2alVerse might
+              find unacceptable. Vir2alVerse retains the final say in what is
+              considered unacceptable or not.
+            </li>
+          </ul>
+          {/* <p>
             Refrain from creating derivative work of a talent that the talent
             would find disagreeable.  Do not attempt to impersonate or falsely
             represent Vir2alVerse or its members. Works that can be mistaken as
@@ -28,8 +112,8 @@ export default function page({}: Props) {
           <p>
             Refrain from creating any derivative work that Vir2alVerse might
             find unacceptable. Vir2alVerse retains the final say in what is
-            considered unacceptable or not.”
-          </p>
+            considered unacceptable or not.
+          </p> */}
 
           <div className="ap">
             <img src="/g/chib1.png" alt="" className="chib" />
@@ -46,7 +130,7 @@ export default function page({}: Props) {
             <h2>Privacy Policy</h2>
           </div>
           <p>
-            “Vir2alVerse values your privacy. We will never share your
+            Vir2alVerse values your privacy. We will never share your
             information without your permission unless legally mandated by the
             United States.
           </p>

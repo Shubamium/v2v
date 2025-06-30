@@ -81,7 +81,7 @@ export default function Header({}: Props) {
             GUIDELINES
           </Link>
           <Link
-            href="#"
+            href="https://www.vir2alverse.store"
             target="_blank"
             className={`btn btn-mnav ${path.includes("/merch") ? "act" : ""}`}
           >
@@ -172,15 +172,27 @@ export default function Header({}: Props) {
         </div>
       </nav>
       <div id="side-contact">
-        <a href="#" className="btn btn-sc">
+        <a
+          href="https://x.com/Vir2alVerse"
+          target="_blank"
+          className="btn btn-sc"
+        >
           {" "}
           <FaXTwitter />
         </a>
-        <a href="#" className="btn btn-sc">
+        <a
+          href="https://www.youtube.com/@Vir2alVerse"
+          target="_blank"
+          className="btn btn-sc"
+        >
           {" "}
           <FaYoutube />
         </a>
-        <a href="#" className="btn btn-sc">
+        <a
+          href="https://discord.gg/Kuy73x2tZv"
+          target="_blank"
+          className="btn btn-sc"
+        >
           {" "}
           <FaDiscord />
         </a>
