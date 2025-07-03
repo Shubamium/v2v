@@ -189,7 +189,7 @@ export default function Header({}: Props) {
           <FaYoutube />
         </a>
         <a
-          href="https://discord.gg/Kuy73x2tZv"
+          href="https://www.discord.gg/wM8wNcUHCm"
           target="_blank"
           className="btn btn-sc"
         >

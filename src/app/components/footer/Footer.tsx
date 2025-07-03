@@ -58,12 +58,15 @@ export default function Footer({}: Props) {
                 <FaXTwitter />
               </a>
               <a
-                href="https://www.youtube.com/@Vir2alVerse"
+                href="https://www.discord.gg/wM8wNcUHCm"
                 className="btn btn-ct"
               >
                 <FaDiscord />
               </a>
-              <a href="https://discord.gg/Kuy73x2tZv" className="btn btn-ct">
+              <a
+                href="https://www.youtube.com/@Vir2alVerse"
+                className="btn btn-ct"
+              >
                 <FaYoutube />
               </a>
             </div>
