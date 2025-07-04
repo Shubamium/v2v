@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./password.scss";
 type Props = {
   children: React.ReactNode;
@@ -16,6 +16,7 @@ export default function Password({ children }: Props) {
       alert("Wrong Password");
     }
   };
+
   return !open ? (
     <div id="gate">
       <p>Enter the password:</p>

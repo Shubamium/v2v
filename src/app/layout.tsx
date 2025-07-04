@@ -8,6 +8,7 @@ import ReactLenis from "lenis/react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Password from "./components/password/Password";
+import PasswordCheck from "./components/password/PasswordCheck";
 
 const gt = localFont({
   src: [
@@ -75,14 +76,16 @@ export default function RootLayout({
           } as CSSProperties
         }
       >
-        <Password>
-          <Loading isMain={true} />
-          <ReactLenis root>
-            <Header />
-            {children}
-            <Footer />
-          </ReactLenis>
-        </Password>
+        <PasswordCheck>
+          <>
+            <Loading isMain={true} />
+            <ReactLenis root>
+              <Header />
+              {children}
+              <Footer />
+            </ReactLenis>
+          </>
+        </PasswordCheck>
       </body>
     </html>
   );
