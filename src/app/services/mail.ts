@@ -18,6 +18,7 @@ export async function submitForm(
     from: `${process.env.MAIL_USER} <Vir2alVerse>`,
     to: process.env.MAIL_TARGET,
     subject: `[Form Submission] ${subject}`,
+    replyTo: [process.env.MAIL_USER],
     text: `New submission on Vir2alverse website from ${name} - ${mail} \n \n \n MESSAGE: \n ${message}`,
   });
 
