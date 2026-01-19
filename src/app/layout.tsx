@@ -27,7 +27,7 @@ const title = "Vir2al Verse";
 const description =
   " Vir2alVerse is the next step in quality entertainment, bringing a colorful collection of virtual talents to new and greater heights!";
 const banner =
-  "http://shubastore.caprover.venmi.art/api/public/dl/xBi_5PZz?inline=true";
+  "http://shubastore.venmiart.com/api/public/dl/xBi_5PZz?inline=true";
 const url = "https://vir2alverse.com";
 
 export const metadata: Metadata = {
