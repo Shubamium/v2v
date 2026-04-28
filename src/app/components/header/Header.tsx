@@ -21,7 +21,7 @@ export default function Header({}: Props) {
     await animate(
       ".btn-mnav",
       { scaleX: [0, 1], x: [500, 0] },
-      { duration: 0.05, delay: stagger(0.1) }
+      { duration: 0.05, delay: stagger(0.1) },
     );
   };
 
@@ -29,7 +29,7 @@ export default function Header({}: Props) {
     await animate(
       ".btn-mnav",
       { scaleX: 1, x: 500 },
-      { duration: 0.05, delay: stagger(0.05, { from: "last" }) }
+      { duration: 0.05, delay: stagger(0.05, { from: "last" }) },
     );
   };
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Header({}: Props) {
         <div className="logo-part btn">
           <div className="wrapper ">
             <Link href={"/"}>
-              <img src="/g/logo_w.png" alt="" className="logo" />
+              <img src="/g/v2vlogo.png" alt="" className="logo" />
             </Link>
           </div>
         </div>

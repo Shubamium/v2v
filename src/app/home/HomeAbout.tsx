@@ -27,12 +27,12 @@ export default function HomeAbout({ arts }: Props) {
   const lP = useTransform(
     progress.scrollYProgress,
     [0, 1],
-    small ? [-100, 50] : [-50, 100]
+    small ? [-100, 50] : [-50, 100],
   );
   const rP = useTransform(
     progress.scrollYProgress,
     [0, 1],
-    small ? [50, -100] : [100, -200]
+    small ? [50, -100] : [100, -200],
   );
 
   const sideL = useTransform(progress.scrollYProgress, [0, 1], [-100, -300]);
@@ -75,7 +75,7 @@ export default function HomeAbout({ arts }: Props) {
           {/* <img src={artL} alt="" className="art" /> */}
         </div>
         <div className="content">
-          <img src="/g/logo_w.png" alt="" />
+          <img src="/g/v2vlogo_p.png" alt="" />
           <p>
             Vir2alVerse is the next step in quality entertainment, bringing a
             <span> colorful collection</span> of <span>virtual talents</span> to

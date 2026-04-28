@@ -24,7 +24,7 @@ export default function page({}: Props) {
     setOutput(
       res
         ? "Your message has been submitted!"
-        : "Something went wrong. Please try again or contact another way."
+        : "Something went wrong. Please try again or contact another way.",
     );
 
     setTimeout(() => {
@@ -118,7 +118,7 @@ export default function page({}: Props) {
           </div>
 
           <div className="act">
-            <img src="/g/logo_w.png" alt="" className="logo" />
+            <img src="/g/v2vlogo.png" alt="" className="logo" />
             <button className="btn btn-main" type="submit">
               SEND
             </button>
@@ -127,7 +127,7 @@ export default function page({}: Props) {
       </section>
       <section id="ctban">
         <picture className="art">
-          <source srcSet="/g/mobilecontact2.png" media="(max-width:550px)" />
+          <source srcSet="/g/mobilecontact3.png" media="(max-width:550px)" />
           <img src="/d/ctart.png" alt="" />
         </picture>
       </section>

@@ -3,7 +3,14 @@ import React from "react";
 type Props = {};
 
 import "./about.scss";
-export default function page({}: Props) {
+import { fetchData, urlFor } from "../services/db";
+export default async function page({}: Props) {
+  const gd = await fetchData<any>(`
+		*[_type == 'general' && preset == 'main'][0]{
+			staff
+		}
+	`);
+
   return (
     <main id="p_about">
       <section id="tabout">
@@ -23,7 +30,7 @@ export default function page({}: Props) {
             <img src="/g/chib2.png" alt="" className="chib" />
           </div>
           <div className="r">
-            <img src="/g/logo_w.png" alt="" className="logo" />
+            <img src="/g/v2vlogo_p.png" alt="" className="logo" />
             <img src="/d/bar.svg" alt="" className="bar b" />
             <img src="/d/bar.svg" alt="" className="bar t" />
             <h2>About Us</h2>
@@ -148,6 +155,42 @@ export default function page({}: Props) {
               permission.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section id="staff">
+        <div className="cthead">
+          <h2>Staff</h2>
+        </div>
+        <div className="staff-list">
+          {gd?.staff?.map((s: any, i: number) => (
+            <div className="staff-card" key={i + s._key}>
+              <img
+                src={s.pfp && urlFor(s.pfp)?.format("webp").height(400).url()}
+                alt=""
+                className="pfp"
+              />
+              <h3 className="">{s.n}</h3>
+              <p className="role">{s.r}</p>
+              <hr />
+              <p className="detail">{s.d}</p>
+            </div>
+          ))}
+          {/* <div className="staff-card">
+            <img src="/g/pfpf.png" alt="" className="pfp" />
+            <h3 className="">Mario (Basuma)</h3>
+            <p className="role">CEO & FOUNDER</p>
+            <hr />
+
+            <p className="detail">Handles Company Operations!</p>
+          </div>
+          <div className="staff-card">
+            <img src="/g/pfpf.png" alt="" className="pfp" />
+            <h3 className="">Mario (Basuma)</h3>
+            <p className="role">CEO & FOUNDER</p>
+            <hr />
+            <p className="detail">Handles Company Operations!</p>
+          </div> */}
         </div>
       </section>
     </main>

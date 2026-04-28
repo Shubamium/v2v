@@ -73,7 +73,7 @@ export default function Footer({}: Props) {
           </div>
           <div className="r">
             <div className="top">
-              <img src="/g/logo_w.png" alt="" className="logo" />
+              <img src="/g/v2vlogo_p.png" alt="" className="logo" />
               <p className="tagline">From our universe to yours</p>
             </div>
             <div className="b">

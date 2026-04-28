@@ -47,7 +47,9 @@
         align-items: center;
         justify-content: center;
       }
-
+      img {
+        width: min(500px, 90%);
+      }
       @include mq(550) {
         padding: 1em;
       }
