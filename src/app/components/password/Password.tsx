@@ -16,8 +16,7 @@ export default function Password({ children }: Props) {
       alert("Wrong Password");
     }
   };
-  // Remove false to restore gate
-  return false && !open ? (
+  return !open ? (
     <div id="gate">
       <p>Enter the password:</p>
       <input
