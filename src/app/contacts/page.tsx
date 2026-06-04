@@ -127,7 +127,7 @@ export default function page({}: Props) {
       </section>
       <section id="ctban">
         <picture className="art">
-          <source srcSet="/g/mobilecontact4.png" media="(max-width:550px)" />
+          <source srcSet="/g/mobilecontact5.png" media="(max-width:550px)" />
           <img src="/d/ctart.png" alt="" />
         </picture>
       </section>

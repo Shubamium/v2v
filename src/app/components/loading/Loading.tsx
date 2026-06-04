@@ -23,7 +23,7 @@ export default function Loading({ isMain }: { isMain?: boolean }) {
           id="loading"
           className={`${load ? "done" : "loading"} ${isMain ? "main" : "page"}`}
         >
-          <img src="/g/v2vlogo.png" alt="" className="logo" />
+          <img src="/g/v2vlogo_p.png" alt="" className="logo" />
           <p className="note">- Initializing -</p>
           <div className="lights"></div>
           <FaSpinner className="spin" />
