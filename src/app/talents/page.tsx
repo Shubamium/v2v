@@ -5,6 +5,7 @@ import "./talents.scss";
 import InifiniteText from "./InifiniteText";
 import { fetchData, urlFor } from "../services/db";
 import TalentList from "./TalentList";
+import TalentListNew from "./TalentListNew";
 export default async function page({}: Props) {
   const td = await fetchData<any>(`
 			*[_type == 'talents']  | order(_createdAt asc){
@@ -15,6 +16,7 @@ export default async function page({}: Props) {
 				arts{
 					st,
 					logo,
+					pfp
 				}
 			}
 		`);
@@ -23,7 +25,7 @@ export default async function page({}: Props) {
     <main id="p_talents">
       <InifiniteText />
       <section id="tal-list">
-        <TalentList td={td} />
+        <TalentListNew td={td} />
       </section>
     </main>
   );

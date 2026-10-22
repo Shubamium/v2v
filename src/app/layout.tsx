@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={``}
+        className={`body`}
         style={
           {
             "--fontH": gt.style.fontFamily,

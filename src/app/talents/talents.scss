@@ -3,6 +3,7 @@
   .infitext {
     position: absolute;
     top: 15%;
+    z-index: -1;
     h2 {
       font-size: 10rem;
       white-space: nowrap;
@@ -13,10 +14,6 @@
     }
   }
 
-  @include mq(1024) {
-    // min-height: 2000px;
-    // padding-bottom: 400px;
-  }
   #tal-list {
     .th {
       text-align: center;

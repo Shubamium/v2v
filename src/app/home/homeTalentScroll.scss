@@ -1,0 +1,53 @@
+@use "mixins" as *;
+
+.talent-scroll {
+  position: relative;
+
+  .glow {
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    left: 0%;
+    z-index: -2;
+    filter: blur(80px);
+    opacity: 0.1;
+    user-select: none;
+    pointer-events: none;
+
+    @include mq(768) {
+      filter: blur(60px);
+      top: -10%;
+      opacity: 0.2;
+    }
+
+    @include mq(420) {
+      opacity: 0.3;
+      top: -5%;
+      filter: blur(40px);
+    }
+
+    @include mq(550) {
+      display: none;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    padding: 150px 0;
+    gap: 4em;
+
+    @include mq(550) {
+      padding: 80px 0;
+      gap: 3em;
+    }
+
+    .scroller {
+      display: flex;
+      gap: 4em;
+
+      @include mq(550) {
+        gap: 3em;
+      }
+    }
+  }
+}

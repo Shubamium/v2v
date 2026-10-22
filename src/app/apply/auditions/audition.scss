@@ -1,0 +1,650 @@
+#page_audition {
+  overflow: hidden;
+
+  .audition-hero {
+    position: relative;
+    isolation: isolate;
+    width: min(1440px, 90%);
+    min-height: 650px;
+    margin: 0 auto;
+    padding: 8rem 0 6rem;
+
+    h1 {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 2.5rem;
+      font-size: clamp(2.5rem, 5.2vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+
+      .outlined {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.72);
+      }
+    }
+
+    .audition-status {
+      position: relative;
+      z-index: 2;
+      width: fit-content;
+      margin: -1rem auto 2rem;
+      padding: 0.55rem 4.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: #383838;
+      color: #f0f0f0;
+      font-size: 1.5rem;
+      border: 3px solid white;
+      text-align: center;
+      text-shadow: none;
+
+      span {
+        font-weight: bold;
+        display: block;
+        font-size: 1.2rem;
+      }
+    }
+
+    .audition-video {
+      --corner-offset: -1.75rem;
+      --corner-hover-offset: -3.5rem;
+      position: relative;
+      z-index: 2;
+      width: min(680px, 68%);
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      padding: 1.25rem;
+      background: #111;
+      box-shadow: 0 0 28px rgba(0, 0, 0, 0.45);
+      margin-top: 50px;
+
+      &:hover {
+        --corner-offset: var(--corner-hover-offset);
+      }
+
+      .corner {
+        position: absolute;
+        z-index: 3;
+        width: 50px;
+        height: 50px;
+        border-color: #f5f5f5;
+        border-style: solid;
+        transition:
+          top 250ms ease,
+          right 250ms ease,
+          bottom 250ms ease,
+          left 250ms ease;
+      }
+
+      --borderthickness: 10px;
+
+      .tl {
+        top: var(--corner-offset);
+        left: var(--corner-offset);
+        border-width: var(--borderthickness) 0 0 var(--borderthickness);
+      }
+
+      .tr {
+        top: var(--corner-offset);
+        right: var(--corner-offset);
+        border-width: var(--borderthickness) var(--borderthickness) 0 0;
+      }
+
+      .bl {
+        bottom: var(--corner-offset);
+        left: var(--corner-offset);
+        border-width: 0 0 var(--borderthickness) var(--borderthickness);
+      }
+
+      .br {
+        right: var(--corner-offset);
+        bottom: var(--corner-offset);
+        border-width: 0 var(--borderthickness) var(--borderthickness) 0;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #101010;
+      }
+    }
+
+    .audition-art-left {
+      left: -7%;
+      // background: rgba(31, 200, 109, 0.72);
+    }
+
+    .audition-art-right {
+      right: -7%;
+    }
+  }
+
+  .audition-hero,
+  .audition-requirements,
+  .audition-faq {
+    .audition-art {
+      position: absolute;
+      z-index: 1;
+      top: 8rem;
+      width: 28%;
+      height: 590px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0px 0px 10px white) brightness(0) invert(1);
+      }
+    }
+
+    .audition-cta {
+      position: relative;
+      isolation: isolate;
+      width: min(1440px, 96%);
+      min-height: 320px;
+      margin: 0 auto 5rem;
+      overflow: hidden;
+      border-top: 7px solid #343434;
+      border-bottom: 7px solid #343434;
+      background: rgba(7, 7, 10, 0.9);
+
+      .audition-cta-backdrop {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background-image: none;
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          #000 12%,
+          #000 88%,
+          transparent 100%
+        );
+      }
+
+      .audition-cta-top-trim,
+      .audition-cta-bottom-trim {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        left: 0;
+        height: 24px;
+        background: #343434;
+        pointer-events: none;
+      }
+
+      .audition-cta-top-trim {
+        top: 0;
+        clip-path: polygon(0 0, 17% 0, 20% 100%, 0 100%);
+      }
+
+      .audition-cta-bottom-trim {
+        bottom: 0;
+        clip-path: polygon(77% 0, 100% 0, 100% 100%, 80% 100%);
+      }
+
+      .audition-cta-copy {
+        position: relative;
+        z-index: 2;
+        padding: 2.5rem 7%;
+
+        > p {
+          font-family: var(--fontH);
+          font-size: clamp(1.5rem, 3vw, 2.5rem);
+          font-weight: 700;
+          line-height: 1;
+          text-transform: uppercase;
+        }
+
+        h2 {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 0.25rem;
+          font-size: clamp(2.5rem, 6vw, 5rem);
+          font-weight: 900;
+          line-height: 1;
+          text-transform: uppercase;
+
+          span:first-child {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.72);
+          }
+        }
+
+        > a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 180px;
+          margin-top: 1.75rem;
+          padding: 0.65rem 1.5rem;
+          border: 2px solid #fff;
+          border-radius: 999px;
+          background: rgba(22, 22, 22, 0.8);
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.24);
+          font-family: var(--fontH);
+          font-weight: 700;
+          transition:
+            background-color 200ms ease,
+            color 200ms ease,
+            transform 200ms ease;
+
+          &:hover {
+            transform: translateY(-2px);
+            background: #fff;
+            color: #171717;
+          }
+        }
+      }
+
+      .audition-cta-arrow {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-top: 1.4rem solid transparent;
+        border-bottom: 1.4rem solid transparent;
+        border-left: 2rem solid #fff;
+      }
+
+      .audition-cta-logo {
+        position: absolute;
+        right: 3%;
+        bottom: 1.25rem;
+        z-index: 2;
+        width: clamp(150px, 19vw, 260px);
+        height: auto;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .audition-benefits,
+  .audition-requirements,
+  .audition-faq {
+    position: relative;
+    width: min(1440px, 90%);
+    margin: 0 auto;
+
+    .audition-section-title {
+      position: relative;
+      width: min(100%, 1080px);
+      margin: 0 auto 1.25rem;
+      padding: 0.65rem 2rem 0.8rem;
+      clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+      background: #111;
+      font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+      line-height: 1.1;
+      text-align: center;
+      text-shadow: 0 2px 4px #000;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--purp),
+          var(--yell),
+          var(--blu),
+          var(--gre)
+        );
+        content: "";
+      }
+    }
+  }
+
+  .audition-benefits {
+    padding: 0 0 5rem;
+
+    .benefits-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: min(1280px, 80vw);
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .benefit-card {
+      flex: 0 1 calc((100% - 2rem) / 3);
+      min-width: 230px;
+      min-height: 170px;
+      padding: 1.1rem 1.25rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      background: radial-gradient(ellipse at 50% 0%, #383838, #1d1d1d 75%);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+      text-align: center;
+
+      h3 {
+        width: fit-content;
+        min-width: 75%;
+        margin: 0 auto 0.85rem;
+        padding-bottom: 0.35rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      p {
+        max-width: 260px;
+        margin: 0 auto;
+        color: #bcbcbc;
+        font-size: 1rem;
+        line-height: 1.15;
+        text-shadow: none;
+      }
+    }
+  }
+
+  .audition-requirements {
+    isolation: isolate;
+    padding-bottom: 6rem;
+
+    .audition-section-title {
+      margin-bottom: 1.75rem;
+    }
+
+    .requirements-list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      width: 78%;
+    }
+
+    .requirement-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 32%) 1fr;
+      align-items: center;
+      min-height: 72px;
+      padding: 0.75rem 2rem;
+      clip-path: polygon(0 0, 100% 0, 93% 100%, 0 100%);
+      background: linear-gradient(
+        100deg,
+        rgba(58, 58, 58, 0.92),
+        rgba(31, 31, 31, 0.86)
+      );
+
+      h3 {
+        padding-right: 1rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      p {
+        max-width: 440px;
+        padding-left: 1rem;
+        color: #bcbcbc;
+        font-size: 0.95rem;
+        line-height: 1.2;
+        text-shadow: none;
+      }
+    }
+
+    .audition-art-requirements {
+      z-index: 0;
+      top: 3rem;
+      right: -1%;
+      width: 35%;
+      height: 540px;
+    }
+  }
+
+  .audition-faq {
+    padding-bottom: 6rem;
+
+    .audition-section-title {
+      margin-bottom: 3.5rem;
+    }
+
+    .faq-layout {
+      position: relative;
+      isolation: isolate;
+      min-height: 500px;
+    }
+
+    .audition-art-faq {
+      z-index: 0;
+      top: -1rem;
+      left: -2%;
+      width: 43%;
+      height: 800px;
+    }
+
+    .faq-list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 58%;
+      margin-left: 42%;
+      padding-top: 0.5rem;
+    }
+
+    .faq-item {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 84%, 96% 100%, 0 100%);
+        background: linear-gradient(105deg, #282828, #1c1c1c);
+        box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.04);
+        content: "";
+        pointer-events: none;
+      }
+
+      &.is-open {
+        .faq-decoration {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0) scale(1);
+
+          div {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .faq-notch {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        .faq-question {
+          min-height: 68px;
+          padding-bottom: 0.65rem;
+        }
+
+        .faq-toggle {
+          width: 2.8rem;
+          height: 2.8rem;
+          border-color: #f4f4f4;
+          background: #f4f4f4;
+          color: #242424;
+
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        .faq-answer-expand {
+          grid-template-rows: 1fr;
+        }
+      }
+
+      .faq-decoration {
+        position: absolute;
+        z-index: 3;
+        top: -0.5rem;
+        left: 2rem;
+        display: flex;
+        gap: 0.45rem;
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(0.5rem) scale(0.8);
+        transform-origin: top left;
+        transition:
+          opacity 200ms ease,
+          visibility 200ms ease,
+          transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+        div {
+          width: 1.25rem;
+          height: 2rem;
+          clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+          background: #555;
+          opacity: 0;
+          transform: translateY(-0.4rem);
+          transition:
+            opacity 220ms ease,
+            transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+          &:nth-child(2) {
+            transition-delay: 40ms;
+          }
+
+          &:nth-child(3) {
+            transition-delay: 80ms;
+          }
+        }
+      }
+
+      .faq-notch {
+        position: absolute;
+        z-index: 2;
+        top: 2rem;
+        left: -1.25rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: #1d1d1d;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.55);
+        transform-origin: center;
+        transition:
+          opacity 300ms ease,
+          transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .faq-question {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        min-height: 84px;
+        padding: 1rem 2rem 1rem 2.5rem;
+        border: 0;
+        width: 100%;
+        color: #f5f5f5;
+        cursor: pointer;
+        font-family: var(--fontH);
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: left;
+        transition:
+          min-height 250ms ease,
+          padding 250ms ease,
+          color 250ms ease;
+
+        &:focus-visible {
+          outline: 2px solid #f4f4f4;
+          outline-offset: -4px;
+        }
+      }
+
+      .faq-toggle {
+        flex: 0 0 2.5rem;
+        display: grid;
+        place-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        background: #292929;
+        color: #f5f5f5;
+        transition:
+          width 250ms ease,
+          height 250ms ease,
+          background-color 250ms ease,
+          border-color 250ms ease,
+          color 250ms ease,
+          transform 250ms ease;
+
+        svg {
+          width: 1.35rem;
+          height: 1.35rem;
+          transform: rotate(0);
+          transition: transform 250ms ease;
+        }
+      }
+
+      .faq-answer-expand {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 450ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .faq-answer {
+        position: relative;
+        overflow: hidden;
+        min-height: 0;
+
+        p {
+          margin: 0;
+          padding: 1rem 2.5rem 2rem;
+          color: #bcbcbc;
+          font-size: 1rem;
+          line-height: 1.25;
+          text-shadow: none;
+        }
+
+        &::before {
+          position: absolute;
+          top: 0;
+          right: 2.5rem;
+          left: 2.5rem;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            var(--purp),
+            var(--yell),
+            var(--blu),
+            var(--gre)
+          );
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+body:has(#page_audition) {
+  #footer {
+    margin-top: 0;
+  }
+}

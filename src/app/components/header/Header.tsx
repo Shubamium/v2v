@@ -72,6 +72,7 @@ export default function Header({}: Props) {
           >
             NEWS
           </Link>
+
           <Link
             href="/guidelines"
             className={`btn btn-mnav ${
@@ -86,6 +87,12 @@ export default function Header({}: Props) {
             className={`btn btn-mnav ${path.includes("/merch") ? "act" : ""}`}
           >
             MERCH
+          </Link>
+          <Link
+            href="/apply"
+            className={`btn btn-mnav ${path.includes("/news") ? "act" : ""}`}
+          >
+            JOIN US
           </Link>
           <Link
             href="/contacts"
