@@ -169,6 +169,8 @@
       background: #555;
       color: #333;
       cursor: not-allowed;
+      user-select: none;
+      pointer-events: none;
     }
   }
 

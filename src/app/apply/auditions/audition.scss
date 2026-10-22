@@ -145,125 +145,156 @@
         filter: drop-shadow(0px 0px 10px white) brightness(0) invert(1);
       }
     }
+  }
 
-    .audition-cta {
+  .audition-cta {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 390px;
+    margin: 0 0 150px;
+
+    border-top: 7px solid #343434;
+    border-bottom: 7px solid #343434;
+    background: black;
+
+    .audition-cta-backdrop {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: url("/g/art1.png");
+      background-attachment: fixed;
+      background-size: 100%;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.308) 100%
+      );
+    }
+
+    .audition-cta-top-trim,
+    .audition-cta-bottom-trim {
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      left: 0;
+      height: 30px;
+      background: #343434;
+      pointer-events: none;
+    }
+
+    .audition-cta-top-trim {
+      top: -30px;
+      clip-path: polygon(0 0, 17% 0, 20% 100%, 0 100%);
+    }
+
+    .audition-cta-bottom-trim {
+      bottom: -30px;
+      clip-path: polygon(77% 0, 100% 0, 100% 100%, 80% 100%);
+    }
+
+    .audition-cta-copy {
       position: relative;
-      isolation: isolate;
-      width: min(1440px, 96%);
-      min-height: 320px;
-      margin: 0 auto 5rem;
-      overflow: hidden;
-      border-top: 7px solid #343434;
-      border-bottom: 7px solid #343434;
-      background: rgba(7, 7, 10, 0.9);
+      z-index: 2;
+      padding: 3rem 7%;
 
-      .audition-cta-backdrop {
-        position: absolute;
-        z-index: -1;
-        inset: 0;
-        background-image: none;
-        mask-image: linear-gradient(
-          to right,
-          transparent 0%,
-          #000 12%,
-          #000 88%,
-          transparent 100%
-        );
+      > p {
+        font-family: var(--fontH);
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 700;
+        line-height: 0.8;
+        text-transform: uppercase;
       }
 
-      .audition-cta-top-trim,
-      .audition-cta-bottom-trim {
-        position: absolute;
-        z-index: 1;
-        right: 0;
-        left: 0;
-        height: 24px;
-        background: #343434;
-        pointer-events: none;
+      h2 {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 0;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+
+        span:first-child {
+          color: transparent;
+          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.72);
+        }
       }
 
-      .audition-cta-top-trim {
-        top: 0;
-        clip-path: polygon(0 0, 17% 0, 20% 100%, 0 100%);
-      }
+      > a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+        margin-top: 1.75rem;
+        padding: 0.65rem 1.5rem;
+        border: 2px solid #fff;
+        border-radius: 999px;
+        background: rgba(22, 22, 22, 0.8);
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.24);
+        font-family: var(--fontH);
+        font-weight: 700;
+        transition:
+          background-color 200ms ease,
+          color 200ms ease,
+          transform 200ms ease;
 
-      .audition-cta-bottom-trim {
-        bottom: 0;
-        clip-path: polygon(77% 0, 100% 0, 100% 100%, 80% 100%);
+        &:hover {
+          transform: translateY(-2px);
+          background: #fff;
+          color: #171717;
+        }
       }
+    }
+
+    .audition-cta-arrow {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 1.4rem solid transparent;
+      border-bottom: 1.4rem solid transparent;
+      border-left: 2rem solid #fff;
+    }
+
+    .audition-cta-logo {
+      position: absolute;
+      right: 3%;
+      bottom: 1.25rem;
+      z-index: 2;
+      width: clamp(150px, 19vw, 260px);
+      height: auto;
+      object-fit: contain;
+    }
+
+    @media (max-width: 700px) {
+      min-height: 290px;
+      margin-bottom: 3rem;
 
       .audition-cta-copy {
-        position: relative;
-        z-index: 2;
-        padding: 2.5rem 7%;
-
-        > p {
-          font-family: var(--fontH);
-          font-size: clamp(1.5rem, 3vw, 2.5rem);
-          font-weight: 700;
-          line-height: 1;
-          text-transform: uppercase;
-        }
+        padding: 3rem 7% 5rem;
 
         h2 {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin-top: 0.25rem;
-          font-size: clamp(2.5rem, 6vw, 5rem);
-          font-weight: 900;
-          line-height: 1;
-          text-transform: uppercase;
-
-          span:first-child {
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.72);
-          }
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          font-size: clamp(2rem, 9vw, 3.5rem);
         }
 
         > a {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 180px;
-          margin-top: 1.75rem;
-          padding: 0.65rem 1.5rem;
-          border: 2px solid #fff;
-          border-radius: 999px;
-          background: rgba(22, 22, 22, 0.8);
-          box-shadow: 0 0 12px rgba(255, 255, 255, 0.24);
-          font-family: var(--fontH);
-          font-weight: 700;
-          transition:
-            background-color 200ms ease,
-            color 200ms ease,
-            transform 200ms ease;
-
-          &:hover {
-            transform: translateY(-2px);
-            background: #fff;
-            color: #171717;
-          }
+          margin-top: 1.25rem;
         }
       }
 
       .audition-cta-arrow {
-        display: inline-block;
-        width: 0;
-        height: 0;
-        border-top: 1.4rem solid transparent;
-        border-bottom: 1.4rem solid transparent;
-        border-left: 2rem solid #fff;
+        border-top-width: 1rem;
+        border-bottom-width: 1rem;
+        border-left-width: 1.4rem;
       }
 
       .audition-cta-logo {
-        position: absolute;
-        right: 3%;
-        bottom: 1.25rem;
-        z-index: 2;
-        width: clamp(150px, 19vw, 260px);
-        height: auto;
-        object-fit: contain;
+        right: 5%;
+        bottom: 0.75rem;
+        width: clamp(120px, 35vw, 180px);
       }
     }
   }
@@ -322,7 +353,7 @@
       min-width: 230px;
       min-height: 170px;
       padding: 1.1rem 1.25rem;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border: 3px solid rgba(255, 255, 255, 0.185);
       border-radius: 1.5rem;
       background: radial-gradient(ellipse at 50% 0%, #383838, #1d1d1d 75%);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
@@ -352,7 +383,8 @@
   .audition-requirements {
     isolation: isolate;
     padding-bottom: 6rem;
-
+    max-width: min(1200px, 90%);
+    margin: 0 auto;
     .audition-section-title {
       margin-bottom: 1.75rem;
     }
@@ -368,9 +400,11 @@
 
     .requirement-row {
       display: grid;
-      grid-template-columns: minmax(170px, 32%) 1fr;
+      grid-template-columns: minmax(120px, 29%) 1fr;
       align-items: center;
       min-height: 72px;
+      gap: 1em;
+
       padding: 0.75rem 2rem;
       clip-path: polygon(0 0, 100% 0, 93% 100%, 0 100%);
       background: linear-gradient(
@@ -380,9 +414,10 @@
       );
 
       h3 {
+        padding: 1em;
         padding-right: 1rem;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.85);
-        font-size: 1rem;
+        border-top: 2px solid rgba(255, 255, 255, 0.85);
+        font-size: 1.4rem;
         font-weight: 700;
       }
 
@@ -390,7 +425,7 @@
         max-width: 440px;
         padding-left: 1rem;
         color: #bcbcbc;
-        font-size: 0.95rem;
+        font-size: 1.1rem;
         line-height: 1.2;
         text-shadow: none;
       }
@@ -399,9 +434,10 @@
     .audition-art-requirements {
       z-index: 0;
       top: 3rem;
-      right: -1%;
+      right: -10%;
       width: 35%;
-      height: 540px;
+      height: 100%;
+      scale: 1.2;
     }
   }
 

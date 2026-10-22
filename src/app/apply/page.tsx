@@ -2,8 +2,60 @@ import React from "react";
 import "./apply.scss";
 import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
+import { fetchData } from "../services/db";
 
-export default function ApplyPage() {
+type ApplicationSettings = {
+  staffAccessEnabled?: boolean;
+  staffClosedText?: string;
+  talentAccessEnabled?: boolean;
+  talentClosedText?: string;
+} | null;
+
+type ApplyOptionProps = {
+  label: string;
+  href: string;
+  isOpen: boolean;
+  statusText: string;
+};
+
+function ApplyOption({ label, href, isOpen, statusText }: ApplyOptionProps) {
+  return (
+    <section
+      className={`apply-option ${isOpen ? "open" : "closed"}`}
+      aria-label={`${label} applications`}
+    >
+      {isOpen ? (
+        <Link href={href} className="btn apply-button">
+          <span>{label}</span>
+          <span className="button-arrow" aria-hidden="true">
+            <FaArrowRight />
+          </span>
+        </Link>
+      ) : (
+        <button type="button" className="btn apply-button" disabled>
+          <span>{label}</span>
+        </button>
+      )}
+      <div className="option-details">
+        <span className="dropdown-chevron" aria-hidden="true" />
+        <p>{statusText}</p>
+      </div>
+    </section>
+  );
+}
+
+export default async function ApplyPage() {
+  const settings = await fetchData<ApplicationSettings>(`
+    *[_type == "general" && preset == "main"][0]{
+      staffAccessEnabled,
+      staffClosedText,
+      talentAccessEnabled,
+      talentClosedText
+    }
+  `);
+  const staffOpen = settings?.staffAccessEnabled ?? true;
+  const talentOpen = settings?.talentAccessEnabled ?? false;
+
   return (
     <main id="page_apply">
       <div className="apply-glow" aria-hidden="true" />
@@ -33,38 +85,26 @@ export default function ApplyPage() {
         <p className="apply-prompt">I want to apply as ...</p>
 
         <div className="apply-options">
-          <section
-            className="apply-option open"
-            aria-label="Staff applications"
-          >
-            <Link
-              href="/apply/staff"
-              type="button"
-              className="btn apply-button"
-            >
-              <span>Staff</span>
-              <span className="button-arrow" aria-hidden="true">
-                <FaArrowRight />
-              </span>
-            </Link>
-            <Link href={"/apply/staff"} className="option-details">
-              <span className="dropdown-chevron" aria-hidden="true" />
-              <p>Staff applications are open</p>
-            </Link>
-          </section>
-
-          <section
-            className="apply-option closed"
-            aria-label="Talent applications"
-          >
-            <button type="button" className="btn apply-button" disabled>
-              <span>Talent</span>
-            </button>
-            <div className="option-details">
-              <span className="dropdown-chevron" aria-hidden="true" />
-              <p>Talent auditions are closed</p>
-            </div>
-          </section>
+          <ApplyOption
+            label="Staff"
+            href="/apply/staff"
+            isOpen={staffOpen}
+            statusText={
+              staffOpen
+                ? "Staff applications are open"
+                : settings?.staffClosedText || "Staff applications are closed"
+            }
+          />
+          <ApplyOption
+            label="Talent"
+            href="/apply/auditions"
+            isOpen={talentOpen}
+            statusText={
+              talentOpen
+                ? "Talent auditions are open"
+                : settings?.talentClosedText || "Talent auditions are closed"
+            }
+          />
         </div>
       </section>
     </main>

@@ -85,6 +85,12 @@
           }
         }
         .tal-link {
+          display: block;
+          border: 0;
+          padding: 0;
+          color: inherit;
+          font: inherit;
+          text-decoration: none;
           border-radius: 4em 0 4em 0;
           background: #1c1c1c;
           overflow: hidden;
@@ -104,6 +110,14 @@
               scale: 1.2;
               transform: translateY(-10px);
             }
+          }
+          .talent-image-fallback {
+            display: grid;
+            min-width: 5rem;
+            height: 100%;
+            place-items: center;
+            padding: 1rem;
+            text-align: center;
           }
         }
       }

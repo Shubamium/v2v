@@ -20,12 +20,33 @@ export default async function page({}: Props) {
 				}
 			}
 		`);
+  const generations = await fetchData<any>(`
+    *[_type == "generation"] | order(_createdAt asc) {
+      _id,
+      generationName,
+      generationTitle,
+      generationDescription,
+      songTitle,
+      youtubeMusicUrl,
+      appleMusicUrl,
+      spotifyUrl,
+      generationArt,
+      talents[]->{
+        _id,
+        n,
+        slug,
+        arts {
+          generationListView
+        }
+      }
+    }
+  `);
 
   return (
     <main id="p_talents">
       <InifiniteText />
       <section id="tal-list">
-        <TalentListNew td={td} />
+        <TalentListNew td={td} generations={generations} />
       </section>
     </main>
   );

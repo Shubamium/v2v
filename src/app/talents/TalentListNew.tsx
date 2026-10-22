@@ -9,10 +9,36 @@ import { urlFor } from "../services/db";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { FaApple, FaMusic, FaYoutube } from "react-icons/fa";
 import { BsSpotify } from "react-icons/bs";
-type Props = {
-  td: any;
+import Link from "next/link";
+type Talent = {
+  _id: string;
+  n?: string;
+  slug?: { current: string };
+  arts?: {
+    pfp?: unknown;
+    generationListView?: unknown;
+  };
 };
-export default function TalentListNew({ td }: Props) {
+
+type Generation = {
+  _id: string;
+  generationName?: string;
+  generationTitle?: string;
+  generationDescription?: string;
+  songTitle?: string;
+  youtubeMusicUrl?: string;
+  appleMusicUrl?: string;
+  spotifyUrl?: string;
+  generationArt?: unknown;
+  talents?: Talent[];
+};
+
+type Props = {
+  td: Talent[];
+  generations: Generation[];
+};
+
+export default function TalentListNew({ td, generations }: Props) {
   const [activeTab, setActiveTab] = useState<"all" | "generations">("all");
   const [direction, setDirection] = useState(1);
 
@@ -63,7 +89,7 @@ export default function TalentListNew({ td }: Props) {
             {activeTab === "all" ? (
               <TalentListAll td={td} />
             ) : (
-              <TalentListByGen />
+              <TalentListByGen generations={generations} />
             )}
           </motion.div>
         </AnimatePresence>
@@ -72,98 +98,153 @@ export default function TalentListNew({ td }: Props) {
   );
 }
 
-function TalentListByGen() {
-  const [isExpanded, setIsExpanded] = useState(false);
+function TalentListByGen({ generations }: { generations: Generation[] }) {
+  if (!generations.length) {
+    return (
+      <p className="generation-empty">No generations are available yet.</p>
+    );
+  }
 
   return (
     <div className="talent-list-gen">
-      <div className="generation-card">
-        <div className="top-panel">
-          <div className="info">
-            <p>Talent Title</p>
-            <h2>Re:VIVE</h2>
-          </div>
-          <div className="pfp-list">
-            <div className="tal-link">
-              <img src="/g/faceshot.png" alt="" />
-            </div>
-            <div className="tal-link">
-              <img src="/g/faceshot.png" alt="" />
-            </div>
-            <div className="tal-link">
-              <img src="/g/faceshot.png" alt="" />
-            </div>
-            <div className="tal-link">
-              <img src="/g/faceshot.png" alt="" />
-            </div>
-          </div>
-          <button
-            type="button"
-            className="btn btn-viewmore"
-            aria-expanded={isExpanded}
-            aria-controls="generation-details"
-            onClick={() => setIsExpanded((expanded) => !expanded)}
-          >
-            {isExpanded ? <BiChevronUp /> : <BiChevronDown />}
-          </button>
-        </div>
-        <AnimatePresence initial={false}>
-          {isExpanded && (
-            <motion.div
-              id="generation-details"
-              className="generation-details-panel"
-              initial={{ height: 0, opacity: 0, y: -10 }}
-              animate={{ height: "auto", opacity: 1, y: 0 }}
-              exit={{ height: 0, opacity: 0, y: -10 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              style={{ overflow: "hidden", transformOrigin: "top" }}
-            >
-              <div className="generation-details-content">
-                <img src="/g/art1.png" alt="" className="bg" />
-                <p className="main-desc">
-                  Their dreams brought them together from four far corners of
-                  the world. With a new journey in front of them, Re:Vive Rises
-                  from the ashes to soak up the spotlight.
-                </p>
-                <hr />
-                <div className="action">
-                  <button className="btn btn-music">
-                    <FaMusic />
-                    <span>Spotlight</span>
-                  </button>
-                  <a href="#" className="btn btn-links">
-                    <FaYoutube />
-                  </a>
-
-                  <a href="#" className="btn btn-links">
-                    <FaApple />
-                  </a>
-
-                  <a href="#" className="btn btn-links">
-                    <BsSpotify />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      {generations.map((generation) => (
+        <GenerationCard key={generation._id} generation={generation} />
+      ))}
     </div>
   );
 }
+
+function GenerationCard({ generation }: { generation: Generation }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const detailsId = `generation-details-${generation._id}`;
+  const generationArtUrl = generation.generationArt
+    ? urlFor(generation.generationArt).url()
+    : undefined;
+  const talents = generation.talents ?? [];
+
+  return (
+    <div className="generation-card">
+      <div className="top-panel">
+        <div className="info">
+          {generation.generationTitle && <p>{generation.generationTitle}</p>}
+          <h2>{generation.generationName}</h2>
+        </div>
+        <div className="pfp-list">
+          {talents.map((talent) => {
+            const portrait = talent.arts?.generationListView;
+            const portraitUrl = portrait ? urlFor(portrait).url() : undefined;
+            const portraitContent = portraitUrl ? (
+              <img src={portraitUrl} alt={talent.n ?? ""} />
+            ) : (
+              <span className="talent-image-fallback">{talent.n}</span>
+            );
+
+            return talent.slug?.current ? (
+              <Link
+                href={`/talent/${talent.slug.current}`}
+                className="tal-link"
+                aria-label={`View ${talent.n ?? "talent"}`}
+                key={talent._id}
+              >
+                {portraitContent}
+              </Link>
+            ) : (
+              <div className="tal-link" key={talent._id}>
+                {portraitContent}
+              </div>
+            );
+          })}
+        </div>
+        <button
+          type="button"
+          className="btn btn-viewmore"
+          aria-expanded={isExpanded}
+          aria-controls={detailsId}
+          aria-label={`${isExpanded ? "Hide" : "Show"} ${generation.generationName} details`}
+          onClick={() => setIsExpanded((expanded) => !expanded)}
+        >
+          {isExpanded ? <BiChevronUp /> : <BiChevronDown />}
+        </button>
+      </div>
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            id={detailsId}
+            className="generation-details-panel"
+            initial={{ height: 0, opacity: 0, y: -10 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ overflow: "hidden", transformOrigin: "top" }}
+          >
+            <div className="generation-details-content">
+              {generationArtUrl && (
+                <img src={generationArtUrl} alt="" className="bg" />
+              )}
+              {generation.generationDescription && (
+                <p className="main-desc">{generation.generationDescription}</p>
+              )}
+              {(generation.songTitle ||
+                generation.youtubeMusicUrl ||
+                generation.appleMusicUrl ||
+                generation.spotifyUrl) && (
+                <>
+                  <hr />
+                  <div className="action">
+                    {generation.songTitle && (
+                      <span className="btn btn-music">
+                        <FaMusic />
+                        <span>{generation.songTitle}</span>
+                      </span>
+                    )}
+                    {generation.youtubeMusicUrl && (
+                      <a
+                        href={generation.youtubeMusicUrl}
+                        className="btn btn-links"
+                        aria-label="Listen on YouTube"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FaYoutube />
+                      </a>
+                    )}
+                    {generation.appleMusicUrl && (
+                      <a
+                        href={generation.appleMusicUrl}
+                        className="btn btn-links"
+                        aria-label="Listen on Apple Music"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FaApple />
+                      </a>
+                    )}
+                    {generation.spotifyUrl && (
+                      <a
+                        href={generation.spotifyUrl}
+                        className="btn btn-links"
+                        aria-label="Listen on Spotify"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <BsSpotify />
+                      </a>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function TalentListAll({ td }: { td: any }) {
   const router = useRouter();
   return (
     <div className="talent-list-all">
-      {td.map((t: any) => (
-        <TalentScrollCard
-          key={t._id}
-          name={t.n}
-          accent={t.ca}
-          imageUrl={t.arts.pfp && urlFor(t.arts.pfp).url()}
-          action={() => router.push("/talent/" + t.slug.current)}
-        />
-      ))}
       {td.map((t: any) => (
         <TalentScrollCard
           key={t._id}
