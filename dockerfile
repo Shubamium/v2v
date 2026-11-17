@@ -6,14 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# If Using Payload (Expose Variable During buildtime which payload use)
 
-ARG PAYLOAD_SECRET
-ENV PAYLOAD_SECRET=$PAYLOAD_SECRET
-ARG DATABASE_URI
-ENV DATABASE_URI=$DATABASE_URI
-ARG SITE_URI
-ENV SITE_URI=$SITE_URI
 
 # 2. Copy code and build
 COPY . .
